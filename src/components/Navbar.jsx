@@ -40,31 +40,31 @@ const Navbar = () => {
 
   const handleDownloadResume = () => {
     // Convert the Google Drive view URL to a direct download URL
-    const fileId = '13LuL1Dwh66dSMudLukukO5htuxd89JRJ';
+    const fileId = '1jmjW5--EHX_rSb8SHJzmHEZZDbriOHv_';
     const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
-    
+
     // Open in new tab (as direct download might be blocked by browser)
     window.open(downloadUrl, '_blank');
   };
 
   return (
-    <nav 
-      role="navigation" 
+    <nav
+      role="navigation"
       aria-label="Main navigation"
       className="bg-background-card backdrop-blur-sm bg-opacity-80 shadow-soft fixed w-full top-0 z-50"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="text-xl sm:text-2xl font-display font-bold bg-gradient-primary text-transparent bg-clip-text"
               aria-label="Go to homepage"
             >
               Portfolio
             </Link>
           </div>
-          
+
           {/* Desktop menu */}
           <div className="hidden sm:flex sm:items-center space-x-2">
             {/* Navigation Links */}
@@ -73,11 +73,10 @@ const Navbar = () => {
                 key={item.name}
                 to={item.href}
                 onClick={handleNavigation}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 flex items-center gap-1 ${
-                  location.pathname === item.href
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 flex items-center gap-1 ${location.pathname === item.href
                     ? 'text-primary-600 bg-primary-50'
                     : 'text-text-secondary hover:text-primary-600 hover:bg-primary-50'
-                }`}
+                  }`}
                 aria-current={location.pathname === item.href ? 'page' : undefined}
                 aria-label={`Navigate to ${item.name} (Alt + ${index + 1})`}
               >
@@ -85,7 +84,7 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            
+
             {/* Resume Download Button */}
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -143,11 +142,10 @@ const Navbar = () => {
                   key={item.name}
                   to={item.href}
                   onClick={handleNavigation}
-                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                    location.pathname === item.href
+                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${location.pathname === item.href
                       ? 'text-primary bg-gray-50'
                       : 'text-gray-700 hover:text-primary hover:bg-gray-50'
-                  }`}
+                    }`}
                   role="menuitem"
                   aria-current={location.pathname === item.href ? 'page' : undefined}
                 >
