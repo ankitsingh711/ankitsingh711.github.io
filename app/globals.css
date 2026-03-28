@@ -1,0 +1,233 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════
+   STITCH DESIGN SYSTEM: "The Full-Stack Luminary"
+   Deep Oceanic Dark Mode · Glassmorphism · Tonal Depth
+   ═══════════════════════════════════════════════ */
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background-color: #060e20;
+    color: #dee5ff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: rgba(159, 167, 255, 0.3);
+    color: #dee5ff;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #060e20;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #40485d;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #6d758c;
+  }
+}
+
+@layer components {
+  /* ─── Glassmorphism ─── */
+  .glass {
+    background: rgba(15, 25, 48, 0.6);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  .glass-subtle {
+    background: rgba(9, 19, 40, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .glass-border {
+    border: 1px solid rgba(64, 72, 93, 0.15);
+  }
+
+  /* ─── Gradients ─── */
+  .gradient-primary {
+    background: linear-gradient(135deg, #9fa7ff 0%, #8d98ff 100%);
+  }
+
+  .gradient-hero {
+    background: linear-gradient(135deg, #9fa7ff 0%, #c890ff 50%, #62fae3 100%);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #9fa7ff, #c890ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-hero {
+    background: linear-gradient(135deg, #9fa7ff 0%, #dee5ff 50%, #c890ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ─── Section Containers ─── */
+  .section-padding {
+    @apply px-6 lg:px-8 py-24 md:py-32;
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto;
+  }
+
+  /* ─── Card Styles ─── */
+  .card {
+    @apply bg-surface-container rounded-2xl p-6 md:p-8;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .card:hover {
+    @apply bg-surface-container-high;
+    transform: translateY(-4px);
+  }
+
+  /* ─── Chip / Tag ─── */
+  .chip {
+    @apply inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium font-inter tracking-wide;
+    background: #192540;
+    color: #a3aac4;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .chip:hover {
+    color: #62fae3;
+    box-shadow: 0 0 16px rgba(98, 250, 227, 0.12);
+  }
+
+  /* ─── Code Glass Terminal ─── */
+  .code-glass {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(159, 167, 255, 0.1);
+    border-radius: 12px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ─── Background Animations ─── */
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(30px, -30px) scale(1.05);
+  }
+  50% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+  75% {
+    transform: translate(20px, 10px) scale(1.02);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(-20px, 30px) scale(0.97);
+  }
+  50% {
+    transform: translate(30px, -20px) scale(1.04);
+  }
+  75% {
+    transform: translate(-10px, -15px) scale(1.01);
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 20s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 25s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 60s ease infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ─── Intersection Observer Reveal ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

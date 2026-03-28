@@ -1,63 +1,86 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    './app/**/*.{js,jsx}',
+    './components/**/*.{js,jsx}',
   ],
   theme: {
     extend: {
       colors: {
-        // Modern Deep Purple Theme
+        /* ─── Stitch Design System: Full-Stack Luminary ─── */
+        background: '#060e20',
+        surface: {
+          DEFAULT: '#060e20',
+          'container-lowest': '#000000',
+          'container-low': '#091328',
+          container: '#0f1930',
+          'container-high': '#141f38',
+          'container-highest': '#192540',
+          bright: '#1f2b49',
+          variant: '#192540',
+          dim: '#060e20',
+        },
         primary: {
-          50: '#f5f3ff',
-          100: '#ede9fe',
-          200: '#ddd6fe',
-          300: '#c4b5fd',
-          400: '#a78bfa',
-          500: '#8b5cf6',  // Main primary color
-          600: '#7c3aed',
-          700: '#6d28d9',
-          800: '#5b21b6',
-          900: '#4c1d95',
+          DEFAULT: '#9fa7ff',
+          container: '#8d98ff',
+          dim: '#8a95ff',
+          fixed: '#8d98ff',
+          'fixed-dim': '#7f8af6',
         },
-        // Accent colors
-        accent: {
-          teal: '#2dd4bf',    // Bright teal for accents
-          pink: '#f472b6',    // Soft pink for highlights
-          amber: '#fbbf24',   // Warm amber for attention
+        secondary: {
+          DEFAULT: '#62fae3',
+          container: '#006b5f',
+          dim: '#50ebd5',
         },
-        // Background colors
-        background: {
-          light: '#fafafa',   // Light background
-          dark: '#18181b',    // Dark background
-          card: '#ffffff',    // Card background
+        tertiary: {
+          DEFAULT: '#c890ff',
+          container: '#bc80f8',
+          dim: '#be83fa',
         },
-        // Text colors
-        text: {
-          primary: '#1f2937',   // Main text
-          secondary: '#4b5563', // Secondary text
-          light: '#9ca3af',    // Light text
-          accent: '#8b5cf6',    // Accent text (matches primary-500)
-        }
+        error: {
+          DEFAULT: '#ff6e84',
+          container: '#a70138',
+          dim: '#d73357',
+        },
+        'on-background': '#dee5ff',
+        'on-surface': '#dee5ff',
+        'on-surface-variant': '#a3aac4',
+        outline: '#6d758c',
+        'outline-variant': '#40485d',
+        'on-primary': '#101b8b',
+        'on-primary-container': '#000a7b',
+        'on-secondary': '#005c52',
+        'on-tertiary': '#400072',
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        display: ['Poppins', 'sans-serif'], // For headings
+        manrope: ['var(--font-manrope)', 'Manrope', 'sans-serif'],
+        inter: ['var(--font-inter)', 'Inter', 'sans-serif'],
       },
-      screens: {
-        'xs': '475px',
-        // Other breakpoints are already included by default
+      borderRadius: {
+        '2xl': '1rem',
+        '3xl': '1.5rem',
       },
       boxShadow: {
-        'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
-        'glow': '0 0 15px rgba(139, 92, 246, 0.3)',  // Glowing effect using primary color
+        glow: '0 0 24px rgba(159, 167, 255, 0.2)',
+        'glow-lg': '0 0 48px rgba(159, 167, 255, 0.15)',
+        'glow-secondary': '0 0 24px rgba(98, 250, 227, 0.15)',
+        'glow-tertiary': '0 0 24px rgba(200, 144, 255, 0.15)',
+        ambient: '0 24px 48px rgba(159, 167, 255, 0.08)',
+        soft: '0 2px 15px -3px rgba(0, 0, 0, 0.2)',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(circle, var(--tw-gradient-stops))',
-        'gradient-primary': 'linear-gradient(to right, #8b5cf6, #6d28d9)',
+        'gradient-primary': 'linear-gradient(135deg, #9fa7ff, #8d98ff)',
+        'gradient-hero': 'linear-gradient(135deg, #9fa7ff 0%, #c890ff 50%, #62fae3 100%)',
+      },
+      spacing: {
+        18: '4.5rem',
+        22: '5.5rem',
+      },
+      animation: {
+        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
     },
   },
   plugins: [],
-} 
+};

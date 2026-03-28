@@ -1,59 +1,27 @@
 {
   "name": "ankit-singh-portfolio",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.0.0",
   "homepage": "https://ankitsingh711.github.io",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "deploy": "next build && touch out/.nojekyll && gh-pages -d out -t true"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
-    "@heroicons/react": "^2.0.18",
-    "@monaco-editor/react": "^4.7.0",
-    "@mui/icons-material": "^5.15.15",
-    "@mui/material": "^5.15.15",
-    "@react-three/drei": "^9.99.0",
-    "@react-three/fiber": "^8.15.16",
-    "@uiw/react-split": "^5.9.3",
-    "bootstrap": "^5.3.3",
     "framer-motion": "^10.12.0",
-    "framer-motion-3d": "^10.18.0",
-    "lottie-react": "^2.4.1",
-    "prismjs": "^1.29.0",
+    "next": "^14.2.0",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.10.2",
-    "react-chatbot-kit": "^2.2.2",
     "react-dom": "^18.2.0",
-    "react-icons": "^5.5.0",
-    "react-router-dom": "^6.10.0",
-    "react-toastify": "^9.1.3",
-    "react-type-animation": "^3.2.0",
-    "sass": "^1.75.0",
-    "split.js": "^1.6.5",
-    "three": "^0.161.0"
+    "react-type-animation": "^3.2.0"
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.24.1",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "@vitejs/plugin-react": "^3.1.0",
-    "@vitejs/plugin-react-swc": "^3.5.0",
     "autoprefixer": "^10.4.20",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react": "^7.34.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.6",
     "gh-pages": "^6.1.1",
     "postcss": "^8.5.3",
-    "tailwindcss": "^3.4.17",
-    "vite": "^4.2.0"
+    "tailwindcss": "^3.4.17"
   }
 }
