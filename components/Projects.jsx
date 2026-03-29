@@ -62,6 +62,10 @@ export default function Projects() {
             entry.target.querySelectorAll('.reveal').forEach((el, i) => {
               setTimeout(() => el.classList.add('visible'), i * 120);
             });
+          } else {
+            entry.target.querySelectorAll('.reveal').forEach((el) => {
+              el.classList.remove('visible');
+            });
           }
         });
       },

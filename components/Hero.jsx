@@ -1,19 +1,7 @@
 'use client';
 
-import { Suspense } from 'react';
-import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
-
-// Dynamically import 3D character (no SSR - Three.js needs browser APIs)
-const Character3D = dynamic(() => import('./Character3D'), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-full min-h-[400px] md:min-h-[500px] flex items-center justify-center">
-      <div className="w-16 h-16 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
-    </div>
-  ),
-});
 
 export default function Hero() {
   return (
@@ -34,15 +22,14 @@ export default function Hero() {
         />
       </div>
 
-      {/* ─── Content: Split Layout ─── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-4 items-center min-h-screen py-24">
-          {/* Left: Text Content */}
+      {/* ─── Content: Single Column Layout ─── */}
+      <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 w-full">
+        <div className="flex flex-col items-center justify-center min-h-screen py-24 text-center">
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="order-2 lg:order-1 text-center lg:text-left"
+            className="w-full flex flex-col items-center"
           >
             {/* Eyebrow */}
             <motion.p
@@ -55,13 +42,13 @@ export default function Hero() {
             </motion.p>
 
             {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-manrope font-bold leading-[1.05] mb-6 text-balance">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-manrope font-bold leading-[1.1] mb-6 text-balance max-w-4xl">
               <span className="text-on-background">Hi, I&apos;m </span>
               <span className="gradient-text-hero">Ankit Singh</span>
             </h1>
 
             {/* Typing Subtitle */}
-            <div className="text-lg md:text-xl text-on-surface-variant font-inter mb-5 h-8">
+            <div className="text-lg md:text-xl lg:text-2xl text-on-surface-variant font-inter mb-6 h-10 flex justify-center">
               <TypeAnimation
                 sequence={[
                   'Building scalable web applications',
@@ -85,7 +72,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-on-surface-variant/80 text-base md:text-lg max-w-xl mx-auto lg:mx-0 font-inter leading-relaxed mb-10"
+              className="text-on-surface-variant/80 text-base md:text-lg lg:text-xl max-w-2xl mx-auto font-inter leading-relaxed mb-12"
             >
               Specializing in high-performance digital ecosystems with modern
               engineering practices. From complex backend architectures to
@@ -97,11 +84,11 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.6 }}
-              className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 mb-12"
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
             >
               <a
                 href="#projects"
-                className="group gradient-primary text-[color:var(--gradient-btn-text)] px-8 py-4 rounded-xl font-semibold font-inter text-base hover:shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2"
+                className="group gradient-primary text-[color:var(--gradient-btn-text)] px-8 py-4 rounded-xl font-semibold font-inter text-base hover:shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 w-full sm:w-auto"
               >
                 View Projects
                 <svg
@@ -120,7 +107,7 @@ export default function Hero() {
               </a>
               <a
                 href="#contact"
-                className="border border-outline-variant/30 text-on-surface-variant px-8 py-4 rounded-xl font-medium font-inter text-base hover:bg-surface-container-high/50 hover:text-on-surface transition-all duration-300"
+                className="border border-outline-variant/30 text-on-surface-variant px-8 py-4 rounded-xl font-medium font-inter text-base hover:bg-surface-container-high/50 hover:text-on-surface transition-all duration-300 w-full sm:w-auto"
               >
                 Get in Touch
               </a>
@@ -131,15 +118,15 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.6 }}
-              className="flex items-center justify-center lg:justify-start gap-10 md:gap-14"
+              className="flex flex-wrap items-center justify-center gap-8 md:gap-16 w-full max-w-3xl mx-auto"
             >
               {[
                 { value: '3+', label: 'Years Exp' },
                 { value: '10+', label: 'Projects' },
                 { value: '16+', label: 'Tech Skills' },
               ].map((stat) => (
-                <div key={stat.label} className="text-center lg:text-left">
-                  <div className="text-2xl md:text-3xl font-manrope font-bold text-primary mb-1">
+                <div key={stat.label} className="text-center">
+                  <div className="text-3xl md:text-4xl font-manrope font-bold text-primary mb-2">
                     {stat.value}
                   </div>
                   <div className="text-on-surface-variant text-xs md:text-sm font-inter tracking-wide uppercase">
@@ -148,28 +135,6 @@ export default function Hero() {
                 </div>
               ))}
             </motion.div>
-          </motion.div>
-
-          {/* Right: 3D Character */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="order-1 lg:order-2 flex items-center justify-center"
-          >
-            <div className="w-full max-w-md lg:max-w-lg xl:max-w-xl aspect-square relative">
-              {/* Ambient glow behind character */}
-              <div className="absolute inset-0 bg-primary/5 rounded-full blur-[60px] animate-pulse-glow" />
-              <Suspense
-                fallback={
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="w-16 h-16 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
-                  </div>
-                }
-              >
-                <Character3D />
-              </Suspense>
-            </div>
           </motion.div>
         </div>
       </div>

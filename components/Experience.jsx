@@ -43,6 +43,10 @@ export default function Experience() {
             entry.target.querySelectorAll('.reveal').forEach((el, i) => {
               setTimeout(() => el.classList.add('visible'), i * 150);
             });
+          } else {
+            entry.target.querySelectorAll('.reveal').forEach((el) => {
+              el.classList.remove('visible');
+            });
           }
         });
       },

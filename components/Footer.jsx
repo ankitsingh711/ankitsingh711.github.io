@@ -2,7 +2,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-surface-container-low border-t border-outline-variant/10">
+    <footer className="bg-surface-container-low">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Main Footer */}
         <div className="py-12 grid md:grid-cols-3 gap-8 items-start">
@@ -107,7 +107,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="py-6 border-t border-outline-variant/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-on-surface-variant/60 text-xs font-inter">
             © {currentYear} Ankit Singh. All rights reserved.
           </p>
