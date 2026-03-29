@@ -115,7 +115,7 @@ export default function Contact() {
                     required
                     disabled={status === 'sending'}
                     placeholder="Your name"
-                    className="w-full bg-black/40 text-on-background placeholder:text-on-surface-variant/40 px-4 py-3.5 rounded-xl font-inter text-sm border border-transparent focus:border-primary/30 focus:outline-none focus:ring-0 transition-colors disabled:opacity-50"
+                    className="w-full bg-[color:var(--input-bg)] text-on-background placeholder:text-on-surface-variant/40 px-4 py-3.5 rounded-xl font-inter text-sm border border-transparent focus:border-primary/30 focus:outline-none focus:ring-0 transition-colors disabled:opacity-50"
                   />
                 </div>
                 <div>
@@ -134,7 +134,7 @@ export default function Contact() {
                     required
                     disabled={status === 'sending'}
                     placeholder="you@example.com"
-                    className="w-full bg-black/40 text-on-background placeholder:text-on-surface-variant/40 px-4 py-3.5 rounded-xl font-inter text-sm border border-transparent focus:border-primary/30 focus:outline-none focus:ring-0 transition-colors disabled:opacity-50"
+                    className="w-full bg-[color:var(--input-bg)] text-on-background placeholder:text-on-surface-variant/40 px-4 py-3.5 rounded-xl font-inter text-sm border border-transparent focus:border-primary/30 focus:outline-none focus:ring-0 transition-colors disabled:opacity-50"
                   />
                 </div>
               </div>
@@ -155,7 +155,7 @@ export default function Contact() {
                   required
                   disabled={status === 'sending'}
                   placeholder="What's this about?"
-                  className="w-full bg-black/40 text-on-background placeholder:text-on-surface-variant/40 px-4 py-3.5 rounded-xl font-inter text-sm border border-transparent focus:border-primary/30 focus:outline-none focus:ring-0 transition-colors disabled:opacity-50"
+                  className="w-full bg-[color:var(--input-bg)] text-on-background placeholder:text-on-surface-variant/40 px-4 py-3.5 rounded-xl font-inter text-sm border border-transparent focus:border-primary/30 focus:outline-none focus:ring-0 transition-colors disabled:opacity-50"
                 />
               </div>
 
@@ -175,14 +175,14 @@ export default function Contact() {
                   disabled={status === 'sending'}
                   rows={5}
                   placeholder="Tell me about your project..."
-                  className="w-full bg-black/40 text-on-background placeholder:text-on-surface-variant/40 px-4 py-3.5 rounded-xl font-inter text-sm border border-transparent focus:border-primary/30 focus:outline-none focus:ring-0 transition-colors resize-none disabled:opacity-50"
+                  className="w-full bg-[color:var(--input-bg)] text-on-background placeholder:text-on-surface-variant/40 px-4 py-3.5 rounded-xl font-inter text-sm border border-transparent focus:border-primary/30 focus:outline-none focus:ring-0 transition-colors resize-none disabled:opacity-50"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="w-full gradient-primary text-[#000a7b] py-4 rounded-xl font-semibold font-inter text-base hover:shadow-glow transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed active:scale-[0.98]"
+                className="w-full gradient-primary text-[color:var(--gradient-btn-text)] py-4 rounded-xl font-semibold font-inter text-base hover:shadow-glow transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed active:scale-[0.98]"
               >
                 {status === 'sending'
                   ? 'Sending...'

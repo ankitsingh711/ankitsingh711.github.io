@@ -21,6 +21,15 @@ const experiences = [
     technologies: ['React', 'Express', 'PostgreSQL', 'Redis', 'Tailwind CSS'],
     current: false,
   },
+  {
+    company: 'Edureka',
+    role: 'Software Engineer Internship',
+    period: '2021 — 2022',
+    description:
+      'Assisted in building scalable user interfaces for educational dashboards and developed responsive web components. Worked closely with senior engineers to implement RESTful API integrations and optimize frontend performance.',
+    technologies: ['JavaScript', 'React', 'HTML/CSS', 'Git', 'REST APIs'],
+    current: false,
+  },
 ];
 
 export default function Experience() {

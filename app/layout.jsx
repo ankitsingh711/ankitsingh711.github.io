@@ -1,5 +1,6 @@
 import { Manrope, Inter } from 'next/font/google';
 import './globals.css';
+import ThemeProvider from '@/components/ThemeProvider';
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -58,8 +59,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
-      <body className="font-inter antialiased">{children}</body>
+    <html lang="en" className={`${manrope.variable} ${inter.variable}`} suppressHydrationWarning>
+      <body className="font-inter antialiased">
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }
