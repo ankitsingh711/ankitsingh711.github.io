@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import emailjs from '@emailjs/browser';
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,18 +63,18 @@ export default function Chatbot() {
 
     setEmailStatus('sending');
     try {
-      await emailjs.send(
-        'service_3yp5i6k',     // Match Contact.jsx
-        'template_pzer59e',    // Match Contact.jsx
-        {
-          from_name: 'Chatbot User', // Default since UI is simplified
-          from_email: emailData.email,
+      const res = await fetch('/api/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Chatbot User',
+          email: emailData.email,
           subject: 'Message via AI Chatbot Widget',
           message: emailData.message,
-          to_email: 'developerankit2127@gmail.com',
-        },
-        'vR1wlLeWZe3ka1eb_'   // Public Key
-      );
+        }),
+      });
+
+      if (!res.ok) throw new Error('Failed to send email');
 
       setEmailStatus('success');
       setTimeout(() => {
@@ -85,7 +84,7 @@ export default function Chatbot() {
       }, 3000);
 
     } catch (error) {
-      console.error(error);
+      console.error('Error sending email:', error);
       setEmailStatus('error');
       setTimeout(() => setEmailStatus('idle'), 3000);
     }

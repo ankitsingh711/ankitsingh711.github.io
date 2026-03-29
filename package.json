@@ -11,7 +11,6 @@
     "deploy": "next build && touch out/.nojekyll && gh-pages -d out -t true"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
     "@lottiefiles/dotlottie-react": "^0.18.7",
     "@readyplayerme/visage": "^6.16.0",
     "framer-motion": "^10.12.0",
@@ -20,7 +19,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-github-calendar": "^5.0.5",
-    "react-type-animation": "^3.2.0"
+    "react-type-animation": "^3.2.0",
+    "resend": "^6.9.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",

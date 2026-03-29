@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
 import { staggerContainer, textVariant, fadeIn } from '@/utils/motion';
 
@@ -23,18 +22,13 @@ export default function Contact() {
     setStatus('sending');
 
     try {
-      await emailjs.send(
-        'service_3yp5i6k',
-        'template_pzer59e',
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          to_email: 'developerankit2127@gmail.com',
-        },
-        'vR1wlLeWZe3ka1eb_'
-      );
+      const res = await fetch('/api/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) throw new Error('Failed to send email');
 
       setStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
