@@ -12,7 +12,7 @@ export default function Footer() {
               href="#"
               className="text-xl font-manrope font-bold gradient-text inline-block mb-3"
             >
-              ANKIT.DEV
+              ANKODER
             </a>
             <p className="text-on-surface-variant text-sm font-inter leading-relaxed max-w-xs">
               Full Stack Developer passionate about creating innovative web

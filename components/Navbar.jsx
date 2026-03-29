@@ -58,7 +58,7 @@ export default function Navbar() {
             href="#"
             className="text-xl font-manrope font-bold gradient-text tracking-tight"
           >
-            ANKIT.DEV
+            ANKODER
           </a>
 
           {/* Desktop Navigation */}
@@ -85,7 +85,7 @@ export default function Navbar() {
             ))}
             <button
               onClick={handleResumeDownload}
-              className="ml-4 gradient-primary text-[#000a7b] px-5 py-2.5 rounded-lg text-sm font-semibold font-inter hover:shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="ml-4 gradient-primary text-[white] px-5 py-2.5 rounded-lg text-sm font-semibold font-inter hover:shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
             >
               Resume
             </button>

@@ -1,6 +1,8 @@
 import { Manrope, Inter } from 'next/font/google';
 import './globals.css';
 import ThemeProvider from '@/components/ThemeProvider';
+import CustomCursor from '@/components/CustomCursor';
+import Chatbot from '@/components/Chatbot';
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -17,7 +19,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: 'ANKIT.DEV — Full Stack Developer',
+  title: 'ANKODER — Full Stack Developer',
   description:
     'Ankit Singh — Full Stack Developer building scalable, cloud-ready applications with modern engineering practices. Specializing in React, Node.js, Next.js, and cloud infrastructure.',
   keywords: [
@@ -39,14 +41,14 @@ export const metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://ankitsingh711.github.io',
-    title: 'ANKIT.DEV — Full Stack Developer',
+    title: 'ANKODER — Full Stack Developer',
     description:
       'Building scalable, cloud-ready applications with modern engineering practices.',
-    siteName: 'ANKIT.DEV',
+    siteName: 'ANKODER',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ANKIT.DEV — Full Stack Developer',
+    title: 'ANKODER — Full Stack Developer',
     description:
       'Building scalable, cloud-ready applications with modern engineering practices.',
     creator: '@AnkitSingh711_',
@@ -61,7 +63,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${manrope.variable} ${inter.variable}`} suppressHydrationWarning>
       <body className="font-inter antialiased">
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <CustomCursor />
+          <Chatbot />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

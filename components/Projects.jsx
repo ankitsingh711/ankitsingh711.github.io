@@ -10,7 +10,7 @@ const projects = [
     description:
       'Enterprise-grade supply chain digitalization platform enabling seamless trade data exchange across global logistics networks. Built with microservice architecture.',
     technologies: ['React', 'Node.js', 'AWS', 'PostgreSQL', 'Docker'],
-    image: null,
+    image: '/images/sgtradex.png',
     gradient: 'from-primary/20 via-tertiary/10 to-surface-container',
     liveUrl: '#',
     githubUrl: '#',
@@ -21,7 +21,7 @@ const projects = [
     description:
       'High-performance entertainment booking engine serving millions of visitors. Optimized for speed with server-side rendering and edge caching.',
     technologies: ['Next.js', 'TypeScript', 'Sanity', 'Azure', 'Redis'],
-    image: null,
+    image: '/images/sixflags.png',
     gradient: 'from-secondary/20 via-primary/10 to-surface-container',
     liveUrl: '#',
     githubUrl: '#',
