@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { staggerContainer, textVariant, fadeIn } from '@/utils/motion';
 
 const skillCategories = [
   {
@@ -58,35 +59,18 @@ const skillCategories = [
 ];
 
 export default function Skills() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.reveal').forEach((el, i) => {
-              setTimeout(() => el.classList.add('visible'), i * 100);
-            });
-          } else {
-            entry.target.querySelectorAll('.reveal').forEach((el) => {
-              el.classList.remove('visible');
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   return (
-    <section id="skills" ref={sectionRef} className="section-padding">
-      <div className="section-container">
+    <section id="skills" className="section-padding">
+      <motion.div 
+        variants={staggerContainer(0.1, 0.1)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.1 }}
+        className="section-container"
+      >
         {/* Section Header */}
-        <div className="reveal">
+        <motion.div variants={textVariant()} className="mb-16">
           <p className="text-secondary text-sm tracking-[0.2em] uppercase font-inter mb-4">
             Capabilities
           </p>
@@ -96,14 +80,15 @@ export default function Skills() {
           <p className="text-on-surface-variant text-lg font-inter max-w-2xl mb-16">
             Categorized tools and technologies I leverage to build modern software.
           </p>
-        </div>
+        </motion.div>
 
         {/* Skills Grid */}
         <div className="grid md:grid-cols-2 gap-6">
-          {skillCategories.map((category) => (
-            <div
+          {skillCategories.map((category, index) => (
+            <motion.div
+              variants={fadeIn('up', 'tween', index * 0.1, 0.5)}
               key={category.title}
-              className={`reveal bg-surface-container rounded-2xl p-8 hover:bg-surface-container-high transition-all duration-500 ${
+              className={`bg-surface-container rounded-2xl p-8 hover:bg-surface-container-high transition-all duration-500 ${
                 category.span ? 'md:col-span-2 lg:mx-32' : ''
               }`}
             >
@@ -133,10 +118,10 @@ export default function Skills() {
                   </span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

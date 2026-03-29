@@ -1,53 +1,36 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { staggerContainer, fadeIn, textVariant } from '@/utils/motion';
 
 export default function About() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.reveal').forEach((el, i) => {
-              setTimeout(() => el.classList.add('visible'), i * 100);
-            });
-          } else {
-            entry.target.querySelectorAll('.reveal').forEach((el) => {
-              el.classList.remove('visible');
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section
       id="about"
-      ref={sectionRef}
       className="section-padding bg-surface-container-low"
     >
-      <div className="section-container">
+      <motion.div 
+        variants={staggerContainer()}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.1 }}
+        className="section-container"
+      >
         {/* Section Label */}
-        <div className="reveal">
+        <motion.div variants={textVariant()} className="mb-8">
           <p className="text-secondary text-sm tracking-[0.2em] uppercase font-inter mb-4">
             About
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-manrope font-bold text-on-background mb-8 text-balance">
             The Story So Far
           </h2>
-        </div>
+        </motion.div>
 
         {/* Content Grid */}
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
           {/* Bio Text */}
-          <div className="lg:col-span-3 space-y-6 reveal">
+          <motion.div variants={fadeIn('right', 'tween', 0.1, 0.5)} className="lg:col-span-3 space-y-6">
             <p className="text-on-surface-variant text-lg md:text-xl leading-relaxed font-inter">
               With over <span className="text-primary font-medium">3 years</span> of
               hands-on experience in the MERN stack and Cloud/DevOps, I bridge
@@ -117,10 +100,10 @@ export default function About() {
                 </code>
               </pre>
             </div>
-          </div>
+          </motion.div>
 
           {/* Stats Cards */}
-          <div className="lg:col-span-2 space-y-4 reveal">
+          <motion.div variants={fadeIn('left', 'tween', 0.2, 0.5)} className="lg:col-span-2 space-y-4">
             {[
               {
                 value: '3+',
@@ -164,9 +147,9 @@ export default function About() {
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

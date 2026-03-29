@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
+import { motion } from 'framer-motion';
+import { staggerContainer, textVariant, fadeIn } from '@/utils/motion';
 
 const GitHubCalendar = dynamic(
   () => import('react-github-calendar').then((mod) => mod.GitHubCalendar),
@@ -9,35 +10,18 @@ const GitHubCalendar = dynamic(
 );
 
 export default function GithubContributions() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.reveal').forEach((el, i) => {
-              setTimeout(() => el.classList.add('visible'), i * 150);
-            });
-          } else {
-            entry.target.querySelectorAll('.reveal').forEach((el) => {
-              el.classList.remove('visible');
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   return (
-    <section id="github" ref={sectionRef} className="section-padding">
-      <div className="section-container">
+    <section id="github" className="section-padding">
+      <motion.div 
+        variants={staggerContainer(0.25)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.1 }}
+        className="section-container"
+      >
         {/* Section Header */}
-        <div className="reveal mb-12 text-center md:text-left">
+        <motion.div variants={textVariant()} className="mb-12 text-center md:text-left">
           <p className="text-primary text-sm tracking-[0.2em] uppercase font-inter mb-4">
             Open Source
           </p>
@@ -47,10 +31,10 @@ export default function GithubContributions() {
           <p className="text-on-surface-variant text-lg font-inter max-w-2xl mx-auto md:mx-0">
             My daily code activity and open-source contributions tracking exactly as logged on GitHub.
           </p>
-        </div>
+        </motion.div>
 
         {/* Content Container */}
-        <div className="reveal flex flex-col items-center gap-10">
+        <motion.div variants={fadeIn('up', 'spring', 0.2, 0.75)} className="flex flex-col items-center gap-10">
 
           {/* GitHub Activity Graph (Line Chart) */}
           <div className="w-full bg-surface-container rounded-2xl p-4 sm:p-6 md:p-8 hover:bg-surface-container-high transition-all duration-500 overflow-hidden flex justify-center border border-outline-variant/10 shadow-lg">
@@ -78,8 +62,8 @@ export default function GithubContributions() {
             </div>
           </div>
 
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

@@ -1,7 +1,9 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { staggerContainer, textVariant, fadeIn } from '@/utils/motion';
 
 const projects = [
   {
@@ -51,36 +53,19 @@ const projects = [
 ];
 
 export default function Projects() {
-  const sectionRef = useRef(null);
   const [hoveredId, setHoveredId] = useState(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.reveal').forEach((el, i) => {
-              setTimeout(() => el.classList.add('visible'), i * 120);
-            });
-          } else {
-            entry.target.querySelectorAll('.reveal').forEach((el) => {
-              el.classList.remove('visible');
-            });
-          }
-        });
-      },
-      { threshold: 0.05 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section id="projects" ref={sectionRef} className="section-padding">
-      <div className="section-container">
+    <section id="projects" className="section-padding">
+      <motion.div 
+        variants={staggerContainer(0.25)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.1 }}
+        className="section-container"
+      >
         {/* Section Header */}
-        <div className="reveal mb-16">
+        <motion.div variants={textVariant()} className="mb-16">
           <p className="text-secondary text-sm tracking-[0.2em] uppercase font-inter mb-4">
             Work
           </p>
@@ -90,14 +75,15 @@ export default function Projects() {
           <p className="text-on-surface-variant text-lg font-inter max-w-2xl">
             A selection of enterprise and creative applications.
           </p>
-        </div>
+        </motion.div>
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project) => (
-            <div
+          {projects.map((project, index) => (
+            <motion.div
+              variants={fadeIn('up', 'spring', index * 0.2, 0.75)}
               key={project.id}
-              className="reveal group"
+              className="group"
               onMouseEnter={() => setHoveredId(project.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
@@ -172,10 +158,10 @@ export default function Projects() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

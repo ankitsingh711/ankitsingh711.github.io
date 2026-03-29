@@ -1,7 +1,9 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import { motion } from 'framer-motion';
+import { staggerContainer, textVariant, fadeIn } from '@/utils/motion';
 
 export default function Contact() {
   const sectionRef = useRef(null);
@@ -14,27 +16,7 @@ export default function Contact() {
   });
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.reveal').forEach((el, i) => {
-              setTimeout(() => el.classList.add('visible'), i * 100);
-            });
-          } else {
-            entry.target.querySelectorAll('.reveal').forEach((el) => {
-              el.classList.remove('visible');
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
 
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -77,9 +59,15 @@ export default function Contact() {
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="section-container relative z-10">
+      <motion.div 
+        variants={staggerContainer(0.25)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.1 }}
+        className="section-container relative z-10"
+      >
         {/* Section Header */}
-        <div className="reveal text-center mb-16">
+        <motion.div variants={textVariant()} className="text-center mb-16">
           <p className="text-secondary text-sm tracking-[0.2em] uppercase font-inter mb-4">
             Contact
           </p>
@@ -92,11 +80,11 @@ export default function Contact() {
             Have a project in mind or just want to say hi? My inbox is always
             open for interesting collaborations.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Contact Form */}
-          <div className="lg:col-span-3 reveal">
+          <motion.div variants={fadeIn('right', 'tween', 0.1, 0.5)} className="lg:col-span-3">
             <form
               ref={formRef}
               onSubmit={handleSubmit}
@@ -203,10 +191,10 @@ export default function Contact() {
                 </p>
               )}
             </form>
-          </div>
+          </motion.div>
 
           {/* Contact Info */}
-          <div className="lg:col-span-2 space-y-6 reveal">
+          <motion.div variants={fadeIn('left', 'tween', 0.2, 0.5)} className="lg:col-span-2 space-y-6">
             {/* Email */}
             <div className="bg-surface-container rounded-2xl p-6 hover:bg-surface-container-high transition-all duration-500">
               <div className="flex items-start gap-4">
@@ -354,9 +342,9 @@ export default function Contact() {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

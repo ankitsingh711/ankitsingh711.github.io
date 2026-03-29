@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { staggerContainer, textVariant, fadeIn } from '@/utils/motion';
 
 const experiences = [
   {
@@ -33,46 +34,27 @@ const experiences = [
 ];
 
 export default function Experience() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.reveal').forEach((el, i) => {
-              setTimeout(() => el.classList.add('visible'), i * 150);
-            });
-          } else {
-            entry.target.querySelectorAll('.reveal').forEach((el) => {
-              el.classList.remove('visible');
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section
       id="experience"
-      ref={sectionRef}
       className="section-padding bg-surface-container-low"
     >
-      <div className="section-container">
+      <motion.div 
+        variants={staggerContainer(0.2)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.1 }}
+        className="section-container"
+      >
         {/* Section Header */}
-        <div className="reveal">
+        <motion.div variants={textVariant()} className="mb-16">
           <p className="text-secondary text-sm tracking-[0.2em] uppercase font-inter mb-4">
             Career
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-manrope font-bold text-on-background mb-16">
             Professional Journey
           </h2>
-        </div>
+        </motion.div>
 
         {/* Timeline */}
         <div className="relative">
@@ -81,7 +63,7 @@ export default function Experience() {
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (
-              <div key={exp.company} className="reveal relative pl-8 md:pl-20">
+              <motion.div variants={fadeIn('up', 'spring', index * 0.2, 0.75)} key={exp.company} className="relative pl-8 md:pl-20">
                 {/* Timeline dot */}
                 <div
                   className={`absolute left-0 md:left-8 top-2 -translate-x-1/2 w-4 h-4 rounded-full border-2 ${
@@ -129,11 +111,11 @@ export default function Experience() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
