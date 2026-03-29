@@ -3,6 +3,7 @@ import './globals.css';
 import ThemeProvider from '@/components/ThemeProvider';
 import CustomCursor from '@/components/CustomCursor';
 import Chatbot from '@/components/Chatbot';
+import FeaturePopup from '@/components/FeaturePopup';
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -65,6 +66,7 @@ export default function RootLayout({ children }) {
       <body className="font-inter antialiased">
         <ThemeProvider>
           <CustomCursor />
+          <FeaturePopup />
           <Chatbot />
           {children}
         </ThemeProvider>
