@@ -349,18 +349,18 @@ export default function YouTubeVideos() {
             href="https://www.youtube.com/@ankkoder"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/10 transition-all duration-500 hover:-translate-y-0.5 hover:shadow-lg"
+            className="group inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/10 transition-all duration-500 hover:-translate-y-0.5 hover:shadow-lg"
           >
-            <div className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center shadow-lg shadow-red-600/20 group-hover:shadow-red-600/40 transition-shadow">
-              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <div className="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center shadow-md shadow-red-600/20 group-hover:shadow-red-600/40 transition-shadow">
+              <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M23.498 6.186a2.96 2.96 0 00-2.083-2.091C19.58 3.6 12 3.6 12 3.6s-7.58 0-9.415.495A2.96 2.96 0 00.502 6.186C0 8.03 0 12 0 12s0 3.97.502 5.814a2.96 2.96 0 002.083 2.091c1.835.495 9.415.495 9.415.495s7.58 0 9.415-.495a2.96 2.96 0 002.083-2.091c.502-1.844.502-5.814.502-5.814s0-3.97-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
               </svg>
             </div>
             <div className="text-left">
-              <p className="text-on-background font-manrope font-bold text-base">
+              <p className="text-on-background font-manrope font-bold text-sm">
                 Subscribe to @ankkoder
               </p>
-              <p className="text-on-surface-variant text-xs font-inter">
+              <p className="text-on-surface-variant text-[11px] font-inter">
                 More tutorials & dev content →
               </p>
             </div>
