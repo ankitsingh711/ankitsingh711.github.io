@@ -166,19 +166,28 @@ export default function Hero() {
 
             {/* Floating Detail Badge */}
             <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.8 }}
-              className="absolute bottom-6 -left-6 lg:-left-12 glass glass-border px-6 py-4 rounded-2xl flex items-center gap-4 shadow-ambient backdrop-blur-3xl"
+              className="absolute bottom-8 -left-4 lg:-left-12 z-20"
             >
-              <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center text-secondary">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
-              </div>
-              <div className="text-left">
-                <p className="text-on-background font-manrope font-bold text-sm">Full Stack</p>
-                <p className="text-on-surface-variant font-inter text-xs">Engineer</p>
+              <div className="relative group cursor-default">
+                {/* Animated glowing border effect */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-secondary to-tertiary rounded-full opacity-40 group-hover:opacity-100 blur transition duration-500 animate-gradient" />
+                
+                <div className="relative flex items-center gap-3 px-6 py-3 bg-surface-container rounded-full border border-outline-variant/30 glass">
+                  {/* Pulsing Dot */}
+                  <span className="relative flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-secondary"></span>
+                  </span>
+                  
+                  {/* Label */}
+                  <div className="flex flex-col text-left">
+                    <span className="text-on-background font-manrope font-bold text-sm leading-tight tracking-wide">Available for Work</span>
+                    <span className="text-on-surface-variant font-inter text-[10px] tracking-widest uppercase mt-0.5">Full Stack Developer</span>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </motion.div>

@@ -30,22 +30,52 @@ export default function Chatbot() {
     e.preventDefault();
     if (!input.trim()) return;
 
+    // Build the list of messages locally WITHOUT side-effect messages from earlier, or just keep string content
     const userMsg = { role: 'user', content: input.trim() };
-    setMessages((prev) => [...prev, userMsg]);
+    const latestMessages = [...messages, userMsg];
+    
+    setMessages(latestMessages);
     setInput('');
     setIsTyping(true);
 
     try {
+      // Send only pure text messages back to API for context
+      const cleanMessages = latestMessages.map(m => ({
+        role: m.role,
+        content: m.content.replace(/\n\*.*?\*$/, "").trim() // Remove our internal action logs before sending
+      })).slice(-10);
+
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: [...messages, userMsg].slice(-10) }), // Send last 10 msgs for context
+        body: JSON.stringify({ messages: cleanMessages }), 
       });
 
       const data = await res.json();
       
       if (res.ok) {
-        setMessages((prev) => [...prev, { role: 'assistant', content: data.message }]);
+        if (data.tool_calls) {
+          let actionMessage = data.message || "";
+          for (const tool of data.tool_calls) {
+            if (tool.function.name === 'navigate_to_section') {
+              try {
+                const args = JSON.parse(tool.function.arguments);
+                const sectionId = args.sectionId;
+                const el = document.getElementById(sectionId);
+                if (el) {
+                  el.scrollIntoView({ behavior: 'smooth' });
+                  actionMessage += `\n*🧭 Navigating to ${sectionId} section...*`;
+                }
+              } catch(e) {}
+            } else if (tool.function.name === 'open_email_form') {
+              setView('email');
+              actionMessage += `\n*✉️ Opening direct email form...*`;
+            }
+          }
+          setMessages((prev) => [...prev, { role: 'assistant', content: actionMessage.trim() }]);
+        } else {
+          setMessages((prev) => [...prev, { role: 'assistant', content: data.message }]);
+        }
       } else {
         setMessages((prev) => [...prev, { role: 'assistant', content: `[Error]: ${data.error}` }]);
       }
@@ -135,9 +165,13 @@ export default function Chatbot() {
                 {view === 'chat' ? (
                   <button 
                     onClick={() => setView('email')}
-                    className="text-xs font-inter font-medium bg-primary/10 text-primary px-3 py-1.5 rounded-lg hover:bg-primary/20 transition-colors"
+                    className="p-1.5 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors flex items-center justify-center"
+                    title="Direct Mail"
+                    aria-label="Send Direct Mail"
                   >
-                    Direct Mail
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
                   </button>
                 ) : (
                   <button 

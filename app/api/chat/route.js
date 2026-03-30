@@ -29,9 +29,43 @@ You are the official AI Assistant for Ankit Singh's developer portfolio. Your jo
 - Keep answers concise, professional, and directly relevant to Ankit.
 - Explain things gracefully, keep responses short (ideally under 3-4 paragraphs max).
 - Include formatting like bolding arrays of skills if specifically asked.
-- If asked about hiring or contacting Ankit, strongly encourage the user to click the "Send Email" button right here in the chat, or email him at developerankit2127@gmail.com.
+- You have access to tools! You can scroll the page to specific sections or open the email form using your tools.
+- Auto-navigate the user to the relevant section if they ask about it (e.g. "show me projects" -> navigate_to_section('projects')).
+- If asked about hiring or contacting Ankit, strongly encourage the user and use the 'open_email_form' tool to immediately help them.
 - Do not hallucinate projects, personal details, or skills not listed above. Say you don't know if the answer isn't provided.
 `;
+
+const tools = [
+  {
+    type: "function",
+    function: {
+      name: "navigate_to_section",
+      description: "Scrolls the user's browser window to a specific section on the page.",
+      parameters: {
+        type: "object",
+        properties: {
+          sectionId: {
+            type: "string",
+            enum: ["about", "skills", "experience", "projects", "contact"],
+            description: "The ID of the section to navigate to."
+          }
+        },
+        required: ["sectionId"]
+      }
+    }
+  },
+  {
+    type: "function",
+    function: {
+      name: "open_email_form",
+      description: "Changes the chatbot UI to directly show the contact/email form so the user can send Ankit a direct message.",
+      parameters: {
+        type: "object",
+        properties: {}
+      }
+    }
+  }
+];
 
 export async function POST(req) {
   try {
@@ -58,9 +92,20 @@ export async function POST(req) {
       model: 'llama-3.3-70b-versatile', 
       temperature: 0.5,
       max_tokens: 500,
+      tools: tools,
+      tool_choice: "auto",
     });
 
-    const responseText = chatCompletion.choices[0]?.message?.content || "Sorry, I couldn't generate a response.";
+    const responseMessage = chatCompletion.choices[0]?.message;
+
+    if (responseMessage?.tool_calls?.length > 0) {
+      return NextResponse.json({ 
+        tool_calls: responseMessage.tool_calls,
+        message: responseMessage.content || "" 
+      });
+    }
+
+    const responseText = responseMessage?.content || "Sorry, I couldn't generate a response.";
 
     return NextResponse.json({ message: responseText });
 
