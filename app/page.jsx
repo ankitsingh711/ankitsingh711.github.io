@@ -5,6 +5,7 @@ import Skills from '@/components/Skills';
 import Experience from '@/components/Experience';
 import Projects from '@/components/Projects';
 import GithubContributions from '@/components/GithubContributions';
+import YouTubeVideos from '@/components/YouTubeVideos';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -19,6 +20,7 @@ export default function Home() {
         <Experience />
         <Projects />
         <GithubContributions />
+        <YouTubeVideos />
         <Contact />
       </main>
       <Footer />
