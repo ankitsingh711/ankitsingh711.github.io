@@ -14,7 +14,7 @@ const projects = [
     technologies: ['React', 'Node.js', 'AWS', 'PostgreSQL', 'Docker'],
     image: '/images/sgtradex.png',
     gradient: 'from-primary/20 via-tertiary/10 to-surface-container',
-    liveUrl: '#',
+    liveUrl: 'https://www.sgtradex.com',
     githubUrl: '#',
   },
   {
@@ -25,7 +25,7 @@ const projects = [
     technologies: ['Next.js', 'TypeScript', 'Sanity', 'Azure', 'Redis'],
     image: '/images/sixflags.png',
     gradient: 'from-secondary/20 via-primary/10 to-surface-container',
-    liveUrl: '#',
+    liveUrl: 'https://sixflags.com',
     githubUrl: '#',
   },
   {

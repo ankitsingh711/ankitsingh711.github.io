@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
+import Image from 'next/image';
 
 export default function Hero() {
   return (
@@ -22,14 +23,16 @@ export default function Hero() {
         />
       </div>
 
-      {/* ─── Content: Single Column Layout ─── */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 w-full">
-        <div className="flex flex-col items-center justify-center min-h-screen py-24 text-center">
+      {/* ─── Content: Two Column Layout ─── */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-screen py-24 pt-32 lg:pt-24 text-center lg:text-left">
+          
+          {/* Left Column: Text Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full flex flex-col items-center"
+            className="w-full flex flex-col items-center lg:items-start"
           >
             {/* Eyebrow */}
             <motion.p
@@ -48,7 +51,7 @@ export default function Hero() {
             </h1>
 
             {/* Typing Subtitle */}
-            <div className="text-lg md:text-xl lg:text-2xl text-on-surface-variant font-inter mb-6 h-10 flex justify-center">
+            <div className="text-lg md:text-xl lg:text-2xl text-on-surface-variant font-inter mb-6 h-10 flex justify-center lg:justify-start">
               <TypeAnimation
                 sequence={[
                   'Building scalable web applications',
@@ -72,7 +75,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-on-surface-variant/80 text-base md:text-lg lg:text-xl max-w-2xl mx-auto font-inter leading-relaxed mb-12"
+              className="text-on-surface-variant/80 text-base md:text-lg lg:text-xl max-w-2xl font-inter leading-relaxed mb-12"
             >
               Specializing in high-performance digital ecosystems with modern
               engineering practices. From complex backend architectures to
@@ -84,7 +87,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.6 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-16"
             >
               <a
                 href="#projects"
@@ -118,14 +121,14 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.6 }}
-              className="flex flex-wrap items-center justify-center gap-8 md:gap-16 w-full max-w-3xl mx-auto"
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-8 md:gap-12 w-full max-w-3xl"
             >
               {[
                 { value: '3+', label: 'Years Exp' },
                 { value: '10+', label: 'Projects' },
                 { value: '16+', label: 'Tech Skills' },
               ].map((stat) => (
-                <div key={stat.label} className="text-center">
+                <div key={stat.label} className="text-center lg:text-left">
                   <div className="text-3xl md:text-4xl font-manrope font-bold text-primary mb-2">
                     {stat.value}
                   </div>
@@ -134,6 +137,49 @@ export default function Hero() {
                   </div>
                 </div>
               ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Right Column: Hero Portrait Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4, duration: 1, ease: 'easeOut' }}
+            className="relative w-full max-w-md mx-auto lg:max-w-none lg:w-full aspect-[4/5] lg:aspect-square xl:aspect-[4/5] rounded-[2rem] overflow-hidden glass glass-border p-2 group"
+          >
+            {/* Glowing Backdrop behind the image */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-secondary/20 blur-2xl group-hover:scale-110 transition-transform duration-700" />
+            
+            <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden">
+              {/* Fallback gradient if image fails to load initially */}
+              <div className="absolute inset-0 bg-surface-container-high animate-pulse" />
+              
+              <Image
+                src="/images/ankit-profile.jpg"
+                alt="Ankit Singh"
+                fill
+                priority
+                className="object-cover object-top scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)]"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+
+            {/* Floating Detail Badge */}
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+              className="absolute bottom-6 -left-6 lg:-left-12 glass glass-border px-6 py-4 rounded-2xl flex items-center gap-4 shadow-ambient backdrop-blur-3xl"
+            >
+              <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center text-secondary">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+              </div>
+              <div className="text-left">
+                <p className="text-on-background font-manrope font-bold text-sm">Full Stack</p>
+                <p className="text-on-surface-variant font-inter text-xs">Engineer</p>
+              </div>
             </motion.div>
           </motion.div>
         </div>

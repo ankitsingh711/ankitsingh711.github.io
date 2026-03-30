@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from './ThemeProvider';
+import Logo from './Logo';
 
 const navLinks = [
   { label: 'About', href: '#about' },
@@ -54,11 +55,8 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a
-            href="#"
-            className="text-xl font-manrope font-bold gradient-text tracking-tight"
-          >
-            ANKODER
+          <a href="#" className="hover:opacity-80 transition-opacity group">
+            <Logo className="scale-75 sm:scale-90 md:scale-100 origin-left" />
           </a>
 
           {/* Desktop Navigation */}

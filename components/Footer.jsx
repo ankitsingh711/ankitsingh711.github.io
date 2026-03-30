@@ -1,3 +1,5 @@
+import Logo from './Logo';
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -8,11 +10,8 @@ export default function Footer() {
         <div className="py-12 grid md:grid-cols-3 gap-8 items-start">
           {/* Brand */}
           <div>
-            <a
-              href="#"
-              className="text-xl font-manrope font-bold gradient-text inline-block mb-3"
-            >
-              ANKODER
+            <a href="#" className="inline-block mb-3 hover:opacity-80 transition-opacity">
+              <Logo className="scale-75 sm:scale-90 md:scale-100 origin-left" />
             </a>
             <p className="text-on-surface-variant text-sm font-inter leading-relaxed max-w-xs">
               Full Stack Developer passionate about creating innovative web
@@ -109,7 +108,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-on-surface-variant/60 text-xs font-inter">
-            © {currentYear} Ankit Singh. All rights reserved.
+            © {currentYear} Ankoder. All rights reserved.
           </p>
           <p className="text-on-surface-variant/60 text-xs font-inter flex items-center gap-1">
             Made with
