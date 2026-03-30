@@ -144,10 +144,10 @@ export default function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 w-[350px] sm:w-[400px] h-[550px] max-h-[80vh] bg-surface/90 backdrop-blur-xl border border-outline-variant/30 rounded-2xl shadow-2xl flex flex-col overflow-hidden z-[1001]"
+            className="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 w-[350px] sm:w-[400px] h-[550px] max-h-[80vh] bg-surface/95 backdrop-blur-2xl rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] flex flex-col overflow-hidden z-[1001]"
           >
             {/* Header */}
-            <div className="bg-surface-container py-4 px-5 border-b border-outline-variant/20 flex items-center justify-between shrink-0">
+            <div className="bg-transparent py-5 px-6 flex items-center justify-between shrink-0">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white text-xs font-bold shadow-sm">
                   AI
@@ -196,10 +196,10 @@ export default function Chatbot() {
                 <>
                   {messages.map((msg, idx) => (
                     <div key={idx} className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
-                      <div className={`px-4 py-2.5 rounded-2xl max-w-[85%] text-[13px] md:text-sm font-inter leading-relaxed whitespace-pre-wrap ${
+                      <div className={`px-5 py-3.5 rounded-2xl max-w-[85%] text-[13px] md:text-sm font-inter leading-relaxed whitespace-pre-wrap ${
                         msg.role === 'user' 
                           ? 'bg-primary text-white rounded-br-sm shadow-md' 
-                          : 'bg-surface-container-high text-on-surface rounded-bl-sm border border-outline-variant/10'
+                          : 'bg-surface-container-highest text-on-surface rounded-bl-sm shadow-sm'
                       }`}>
                         {msg.content}
                       </div>
@@ -207,10 +207,10 @@ export default function Chatbot() {
                   ))}
                   {isTyping && (
                     <div className="flex items-start">
-                      <div className="px-4 py-3 bg-surface-container-high rounded-2xl rounded-bl-sm flex gap-1.5 w-16">
-                        <span className="w-1.5 h-1.5 rounded-full bg-on-surface-variant/50 animate-bounce" style={{ animationDelay: '0ms' }} />
-                        <span className="w-1.5 h-1.5 rounded-full bg-on-surface-variant/50 animate-bounce" style={{ animationDelay: '150ms' }} />
-                        <span className="w-1.5 h-1.5 rounded-full bg-on-surface-variant/50 animate-bounce" style={{ animationDelay: '300ms' }} />
+                      <div className="px-5 py-4 bg-surface-container-highest rounded-2xl rounded-bl-sm flex items-center justify-center gap-1.5 w-[72px] shadow-sm">
+                        <span className="w-1.5 h-1.5 rounded-full bg-on-surface-variant/70 animate-bounce" style={{ animationDelay: '0ms' }} />
+                        <span className="w-1.5 h-1.5 rounded-full bg-on-surface-variant/70 animate-bounce" style={{ animationDelay: '150ms' }} />
+                        <span className="w-1.5 h-1.5 rounded-full bg-on-surface-variant/70 animate-bounce" style={{ animationDelay: '300ms' }} />
                       </div>
                     </div>
                   )}
@@ -232,7 +232,7 @@ export default function Chatbot() {
                         disabled={emailStatus !== 'idle'}
                         value={emailData.email}
                         onChange={(e) => setEmailData(prev => ({ ...prev, email: e.target.value }))}
-                        className="w-full bg-surface-container text-on-surface text-sm px-4 py-3 rounded-xl border border-outline-variant/20 focus:border-primary/50 focus:outline-none disabled:opacity-50"
+                        className="w-full bg-surface-container-highest text-on-surface text-sm px-5 py-4 rounded-[1rem] focus:ring-2 focus:ring-primary/50 focus:outline-none disabled:opacity-50 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.05)] transition-all"
                       />
                     </div>
                     <div>
@@ -243,7 +243,7 @@ export default function Chatbot() {
                         disabled={emailStatus !== 'idle'}
                         value={emailData.message}
                         onChange={(e) => setEmailData(prev => ({ ...prev, message: e.target.value }))}
-                        className="w-full bg-surface-container text-on-surface text-sm px-4 py-3 rounded-xl border border-outline-variant/20 focus:border-primary/50 focus:outline-none resize-none disabled:opacity-50"
+                        className="w-full bg-surface-container-highest text-on-surface text-sm px-5 py-4 rounded-[1.25rem] focus:ring-2 focus:ring-primary/50 focus:outline-none resize-none disabled:opacity-50 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.05)] transition-all"
                       />
                     </div>
                     <button 
@@ -260,7 +260,7 @@ export default function Chatbot() {
 
             {/* Input Footer */}
             {view === 'chat' && (
-              <div className="p-4 bg-surface/50 border-t border-outline-variant/20 shrink-0">
+              <div className="p-4 px-5 pb-6 bg-gradient-to-t from-surface via-surface/95 to-transparent shrink-0">
                 <form onSubmit={handleSendMessage} className="relative">
                   <input
                     type="text"
@@ -268,14 +268,14 @@ export default function Chatbot() {
                     onChange={(e) => setInput(e.target.value)}
                     disabled={isTyping}
                     placeholder="Ask about Ankit..."
-                    className="w-full bg-surface-container-high text-on-surface text-sm px-4 py-3.5 pr-12 rounded-2xl border border-outline-variant/20 focus:border-primary/50 focus:outline-none shadow-sm disabled:opacity-50"
+                    className="w-full bg-surface-container-highest text-on-surface text-sm px-6 py-4 pr-[3.5rem] rounded-[2rem] focus:ring-2 focus:ring-primary/50 focus:outline-none shadow-[0_2px_15px_-3px_rgba(0,0,0,0.05)] dark:shadow-none disabled:opacity-50 transition-all font-inter placeholder:text-on-surface-variant/50"
                   />
                   <button
                     type="submit"
                     disabled={!input.trim() || isTyping}
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full disabled:opacity-40 hover:bg-primary/90 transition-colors"
+                    className="absolute right-1.5 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full disabled:opacity-40 hover:bg-primary/90 transition-all shadow-md active:scale-95"
                   >
-                    <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                    <svg className="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
                   </button>
                 </form>
               </div>

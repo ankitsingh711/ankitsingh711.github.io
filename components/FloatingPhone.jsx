@@ -5,6 +5,30 @@ import { motion } from 'framer-motion';
 export default function FloatingPhone() {
   return (
     <div className="fixed bottom-6 left-6 lg:bottom-10 lg:left-10 z-[1000] flex flex-col gap-4">
+      {/* Email Button */}
+      <motion.a
+        href="mailto:developerankit2127@gmail.com"
+        title="Email developerankit2127@gmail.com"
+        className="relative flex items-center justify-center w-14 h-14 bg-[#5B63D6] text-white rounded-full shadow-lg group hover:scale-110 active:scale-95 transition-all duration-300"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.4, type: 'spring', bounce: 0.5 }}
+      >
+        <svg 
+          className="w-6 h-6" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={2} 
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+          />
+        </svg>
+      </motion.a>
+
       {/* WhatsApp Button */}
       <motion.a
         href="https://wa.me/919839531208"
@@ -29,14 +53,14 @@ export default function FloatingPhone() {
       <motion.a
         href="tel:+919839531208"
         title="Call +91 98395 31208"
-        className="relative flex items-center justify-center w-14 h-14 bg-green-500 text-white rounded-full shadow-lg group hover:scale-110 active:scale-95 transition-all duration-300"
+        className="relative flex items-center justify-center w-14 h-14 bg-violet-600 text-white rounded-full shadow-lg group hover:scale-110 active:scale-95 transition-all duration-300"
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.6, type: 'spring', bounce: 0.5 }}
       >
         {/* Animated pulse rings */}
-        <span className="absolute inset-0 rounded-full animate-ping opacity-75 bg-green-500 duration-1000 -z-10 group-hover:block" />
-        <span className="absolute -inset-2 rounded-full border border-green-500/30 scale-100 opacity-0 group-hover:scale-150 group-hover:opacity-100 transition-all duration-700 ease-out -z-10" />
+        <span className="absolute inset-0 rounded-full animate-ping opacity-75 bg-violet-600 duration-1000 -z-10 group-hover:block" />
+        <span className="absolute -inset-2 rounded-full border border-violet-600/30 scale-100 opacity-0 group-hover:scale-150 group-hover:opacity-100 transition-all duration-700 ease-out -z-10" />
 
         <svg 
           className="w-6 h-6 animate-[bounce_2s_infinite]" 

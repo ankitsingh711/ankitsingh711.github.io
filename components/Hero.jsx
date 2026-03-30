@@ -110,7 +110,7 @@ export default function Hero() {
               </a>
               <a
                 href="#contact"
-                className="border border-outline-variant/30 text-on-surface-variant px-8 py-4 rounded-xl font-medium font-inter text-base hover:bg-surface-container-high/50 hover:text-on-surface transition-all duration-300 w-full sm:w-auto"
+                className="border border-outline/60 text-on-surface px-8 py-4 rounded-xl font-medium font-inter text-base hover:bg-outline-variant/20 transition-all duration-300 flex items-center justify-center w-full sm:w-auto"
               >
                 Get in Touch
               </a>
@@ -169,26 +169,30 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.8 }}
-              className="absolute bottom-8 -left-4 lg:-left-12 z-20"
+              className="absolute -bottom-0 left-1 -translate-x-[55%] z-20 whitespace-nowrap"
             >
-              <div className="relative group cursor-default">
+              <a 
+                href="https://www.youtube.com/@ankkoder"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative group cursor-pointer block"
+              >
                 {/* Animated glowing border effect */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-secondary to-tertiary rounded-full opacity-40 group-hover:opacity-100 blur transition duration-500 animate-gradient" />
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-red-500 via-rose-500 to-red-400 rounded-full opacity-40 group-hover:opacity-100 blur transition duration-500" />
                 
-                <div className="relative flex items-center gap-3 px-6 py-3 bg-surface-container rounded-full border border-outline-variant/30 glass">
-                  {/* Pulsing Dot */}
-                  <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-secondary"></span>
-                  </span>
+                <div className="relative flex items-center gap-3 px-6 py-3 bg-surface-container rounded-full shadow-2xl overflow-hidden shadow-red-500/10 dark:shadow-red-500/20 glass">
+                  {/* YouTube Icon */}
+                  <svg className="w-6 h-6 text-red-500 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
                   
                   {/* Label */}
                   <div className="flex flex-col text-left">
-                    <span className="text-on-background font-manrope font-bold text-sm leading-tight tracking-wide">Available for Work</span>
-                    <span className="text-on-surface-variant font-inter text-[10px] tracking-widest uppercase mt-0.5">Full Stack Developer</span>
+                    <span className="text-on-background font-manrope font-bold text-sm leading-tight tracking-[0.2em]">ANKODER</span>
+                    <span className="text-on-surface-variant font-inter text-[10px] tracking-widest uppercase mt-0.5">Subscribe on YouTube</span>
                   </div>
                 </div>
-              </div>
+              </a>
             </motion.div>
           </motion.div>
         </div>

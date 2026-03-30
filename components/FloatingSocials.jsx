@@ -31,13 +31,22 @@ export default function FloatingSocials() {
         </svg>
       ),
     },
+    {
+      name: 'YouTube',
+      url: 'https://www.youtube.com/@ankkoder',
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M23.498 6.186a2.96 2.96 0 00-2.083-2.091C19.58 3.6 12 3.6 12 3.6s-7.58 0-9.415.495A2.96 2.96 0 00.502 6.186C0 8.03 0 12 0 12s0 3.97.502 5.814a2.96 2.96 0 002.083 2.091c1.835.495 9.415.495 9.415.495s7.58 0 9.415-.495a2.96 2.96 0 002.083-2.091c.502-1.844.502-5.814.502-5.814s0-3.97-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+        </svg>
+      ),
+    },
   ];
 
   return (
-    <div className="hidden lg:flex fixed left-0 top-1/2 -translate-y-1/2 flex-col z-50">
+    <div className="hidden lg:flex fixed right-0 top-1/2 -translate-y-1/2 flex-col z-50">
       <motion.div 
-        className="flex flex-col gap-2 bg-surface/80 backdrop-blur-xl border border-outline-variant/30 py-4 px-2 rounded-r-2xl shadow-[0_8px_32px_-4px_rgba(0,0,0,0.1)]"
-        initial={{ x: -100, opacity: 0 }}
+        className="flex flex-col gap-2 bg-surface/80 backdrop-blur-xl py-4 px-2 rounded-l-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.5)]"
+        initial={{ x: 100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
       >

@@ -47,49 +47,52 @@ export default function Navbar() {
   };
 
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        scrolled ? 'glass glass-border shadow-ambient' : 'bg-transparent border border-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+    <div className="fixed top-4 md:top-6 inset-x-0 z-[100] flex flex-col items-center px-4 md:px-6 pointer-events-none">
+      <motion.nav
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className={`pointer-events-auto relative flex flex-col w-full max-w-5xl transition-all duration-500 overflow-hidden rounded-[2rem] ${
+          scrolled || isOpen
+            ? 'glass shadow-2xl shadow-primary/5 dark:shadow-black/40'
+            : 'bg-transparent shadow-none'
+        }`}
+      >
+        <div className={`relative flex items-center justify-between w-full transition-all duration-500 ${scrolled || isOpen ? 'px-6 py-3.5' : 'px-4 py-5'}`}>
           {/* Logo */}
-          <a href="#" className="hover:opacity-80 transition-opacity group">
-            <Logo className="scale-75 sm:scale-90 md:scale-100 origin-left" />
+          <a href="#" className="hover:opacity-80 transition-opacity group flex-shrink-0 z-10">
+            <Logo className="scale-[0.85] origin-left" />
           </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          {/* Desktop Navigation - Centered Absolutely */}
+          <div className="hidden md:flex items-center justify-center gap-2 absolute left-1/2 -translate-x-1/2">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className={`relative px-4 py-2 rounded-lg text-sm font-inter font-medium transition-all duration-300 ${
+                className={`relative px-5 py-2 rounded-full text-sm font-inter font-medium transition-colors duration-300 ${
                   activeSection === link.href.slice(1)
                     ? 'text-primary'
-                    : 'text-on-surface-variant hover:text-on-surface'
+                    : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/50'
                 }`}
               >
                 {link.label}
                 {activeSection === link.href.slice(1) && (
                   <motion.span
                     layoutId="navIndicator"
-                    className="absolute inset-0 bg-primary/[0.08] rounded-lg -z-10"
+                    className="absolute inset-0 bg-primary/10 rounded-full -z-10"
                     transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                   />
                 )}
               </a>
             ))}
-            <button
-              onClick={handleResumeDownload}
-              className="ml-4 gradient-primary text-[white] px-5 py-2.5 rounded-lg text-sm font-semibold font-inter hover:shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-            >
-              Resume
-            </button>
+          </div>
+
+          {/* Desktop Actions */}
+          <div className="hidden md:flex flex-shrink-0 items-center gap-3 z-10">
             <button
               onClick={toggleTheme}
-              className="ml-2 p-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors"
+              className="p-2.5 rounded-full text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
@@ -102,12 +105,18 @@ export default function Navbar() {
                 </svg>
               )}
             </button>
+            <button
+              onClick={handleResumeDownload}
+              className="gradient-primary text-[color:var(--gradient-btn-text)] px-6 py-2.5 rounded-full text-sm font-bold tracking-wide font-inter hover:shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+            >
+              Resume
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container-high/50 transition-colors"
+            className="md:hidden relative w-12 h-12 flex items-center justify-center rounded-full hover:bg-surface-container-high/50 transition-colors z-10"
             aria-label="Toggle menu"
             aria-expanded={isOpen}
           >
@@ -115,90 +124,93 @@ export default function Navbar() {
               <motion.span
                 animate={{
                   rotate: isOpen ? 45 : 0,
-                  y: isOpen ? 7 : 0,
+                  y: isOpen ? 8 : 0,
                 }}
-                className="block h-[2px] w-full bg-on-surface-variant rounded-full origin-center"
+                className="block h-[2px] w-full bg-on-surface rounded-full origin-center"
               />
               <motion.span
                 animate={{ opacity: isOpen ? 0 : 1 }}
-                className="block h-[2px] w-full bg-on-surface-variant rounded-full"
+                className="block h-[2px] w-full bg-on-surface rounded-full"
               />
               <motion.span
                 animate={{
                   rotate: isOpen ? -45 : 0,
-                  y: isOpen ? -7 : 0,
+                  y: isOpen ? -8 : 0,
                 }}
-                className="block h-[2px] w-full bg-on-surface-variant rounded-full origin-center"
+                className="block h-[2px] w-full bg-on-surface rounded-full origin-center"
               />
             </div>
           </button>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="md:hidden overflow-hidden glass glass-border"
-          >
-            <div className="px-6 py-6 space-y-1">
-              {navLinks.map((link, index) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  className={`block px-4 py-3 rounded-xl text-base font-inter font-medium transition-colors ${
-                    activeSection === link.href.slice(1)
-                      ? 'text-primary bg-primary/[0.08]'
-                      : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/30'
-                  }`}
-                >
-                  {link.label}
-                </motion.a>
-              ))}
-              <button
-                onClick={() => {
-                  handleResumeDownload();
-                  setIsOpen(false);
-                }}
-                className="w-full mt-4 gradient-primary text-[color:var(--gradient-btn-text)] px-5 py-3 rounded-xl text-base font-semibold font-inter"
-              >
-                Download Resume
-              </button>
-              <button
-                onClick={() => {
-                  toggleTheme();
-                  setIsOpen(false);
-                }}
-                className="w-full mt-2 flex items-center justify-center gap-2 text-on-surface-variant hover:text-on-surface py-3 rounded-xl hover:bg-surface-container-high/30 transition-colors border border-outline-variant/30"
-              >
-                {theme === 'dark' ? (
-                  <>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                    Light Mode
-                  </>
-                ) : (
-                  <>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                    </svg>
-                    Dark Mode
-                  </>
-                )}
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+        {/* Mobile Menu Dropdown */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              className="md:hidden w-full border-t border-outline-variant/20 bg-surface/50"
+            >
+              <div className="px-6 py-6 pb-8 space-y-2 flex flex-col">
+                {navLinks.map((link, index) => (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    className={`block px-5 py-4 rounded-2xl text-lg font-inter font-medium transition-colors ${
+                      activeSection === link.href.slice(1)
+                        ? 'text-primary bg-primary/10'
+                        : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/50'
+                    }`}
+                  >
+                    {link.label}
+                  </motion.a>
+                ))}
+
+                <div className="pt-4 mt-2 flex flex-col gap-3 border-t border-outline-variant/20">
+                  <button
+                    onClick={() => {
+                      handleResumeDownload();
+                      setIsOpen(false);
+                    }}
+                    className="w-full gradient-primary text-[color:var(--gradient-btn-text)] px-6 py-4 rounded-2xl text-base font-bold font-inter"
+                  >
+                    Download Resume
+                  </button>
+                  <button
+                    onClick={() => {
+                      toggleTheme();
+                      setIsOpen(false);
+                    }}
+                    className="w-full flex items-center justify-center gap-3 text-on-surface-variant hover:text-on-surface py-4 rounded-2xl hover:bg-surface-container-high/50 transition-colors border border-outline-variant/30"
+                  >
+                    {theme === 'dark' ? (
+                      <>
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        Switch to Light Mode
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                        Switch to Dark Mode
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
+    </div>
   );
 }
