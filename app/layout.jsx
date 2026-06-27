@@ -1,4 +1,4 @@
-import { Manrope, Inter } from 'next/font/google';
+import { Plus_Jakarta_Sans, DM_Sans } from 'next/font/google';
 import './globals.css';
 import ThemeProvider from '@/components/ThemeProvider';
 import CustomCursor from '@/components/CustomCursor';
@@ -7,18 +7,19 @@ import FeaturePopup from '@/components/FeaturePopup';
 import FloatingSocials from '@/components/FloatingSocials';
 import FloatingPhone from '@/components/FloatingPhone';
 
-const manrope = Manrope({
+const manrope = Plus_Jakarta_Sans({
   subsets: ['latin'],
   variable: '--font-manrope',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['200', '300', '400', '500', '600', '700', '800'],
 });
 
-const inter = Inter({
+const inter = DM_Sans({
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
   weight: ['300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
 });
 
 export const metadata = {
