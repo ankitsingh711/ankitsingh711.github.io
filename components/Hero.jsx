@@ -36,7 +36,7 @@ export default function Hero() {
       <div className="relative z-10 flex flex-col lg:flex-row flex-1 min-h-screen">
 
         {/* ── LEFT: Text ── */}
-        <div className="flex flex-col justify-center lg:w-[54%] px-6 sm:px-10 lg:px-16 xl:px-24 pt-28 pb-10 lg:pt-0 lg:pb-0 order-2 lg:order-1">
+        <div className="flex flex-col justify-center lg:w-[54%] px-4 sm:px-10 lg:px-16 xl:px-24 pt-24 pb-10 lg:pt-0 lg:pb-0 order-2 lg:order-1">
 
           {/* Section marker */}
           <motion.div
@@ -82,7 +82,7 @@ export default function Hero() {
               >
                 <h1
                   className={`font-manrope font-black leading-[0.92] select-none ${stroke ? 'text-stroke-primary' : style}`}
-                  style={{ fontSize: 'clamp(52px, 6.8vw, 104px)', letterSpacing: '-0.035em' }}
+                  style={{ fontSize: 'clamp(38px, 6.8vw, 104px)', letterSpacing: '-0.035em' }}
                 >
                   {text}
                 </h1>
@@ -183,7 +183,7 @@ export default function Hero() {
         </div>
 
         {/* ── RIGHT: Full-bleed cinematic image ── */}
-        <div className="relative lg:w-[46%] h-[60vh] lg:h-screen order-1 lg:order-2 overflow-hidden">
+        <div className="relative lg:w-[46%] h-[45vh] sm:h-[55vh] lg:h-screen order-1 lg:order-2 overflow-hidden">
 
           {/* Gradient masks — seamless blend into background */}
           <div className="absolute inset-y-0 left-0 w-28 lg:w-52 z-10 pointer-events-none"
@@ -216,7 +216,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: 30, y: -10 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ delay: 1.05, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-[15%] right-5 z-20"
+            className="hidden sm:block absolute top-[15%] right-5 z-20"
           >
             <div className="glass border border-white/10 rounded-2xl px-5 py-3.5 flex items-center gap-3 backdrop-blur-md">
               <div className="relative">
@@ -235,7 +235,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: 30, y: -10 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ delay: 1.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-[38%] right-5 z-20"
+            className="hidden sm:block absolute top-[38%] right-5 z-20"
           >
             <div className="glass border border-white/10 rounded-2xl px-5 py-3.5 backdrop-blur-md">
               <div className="text-on-surface-variant/50 text-[10px] font-inter uppercase tracking-widest mb-1.5">Latest Project</div>
@@ -254,7 +254,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: 30, y: -10 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ delay: 1.35, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute bottom-[14%] right-5 z-20"
+            className="hidden sm:block absolute bottom-[14%] right-5 z-20"
           >
             <a
               href="https://www.youtube.com/@ankkoder"
@@ -301,7 +301,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.6 }}
-        className="absolute bottom-16 left-8 lg:left-16 xl:left-24 z-20 flex items-center gap-3 pointer-events-none"
+        className="hidden sm:flex absolute bottom-16 left-8 lg:left-16 xl:left-24 z-20 items-center gap-3 pointer-events-none"
       >
         <motion.div
           animate={{ y: [0, 7, 0] }}

@@ -62,7 +62,7 @@ export default function GithubContributions() {
             >
               <h2
                 className={`font-manrope font-black leading-[0.92] select-none ${stroke ? 'text-stroke-primary' : 'text-on-background'}`}
-                style={{ fontSize: 'clamp(40px, 5.5vw, 82px)', letterSpacing: '-0.035em' }}
+                style={{ fontSize: 'clamp(30px, 5.5vw, 82px)', letterSpacing: '-0.035em' }}
               >
                 {text}
               </h2>
@@ -95,14 +95,14 @@ export default function GithubContributions() {
           </div>
 
           {/* GitHub Calendar Grid */}
-          <div className="sui-card w-full p-6 md:p-8 flex flex-col items-center overflow-x-auto">
-            <div className="min-w-[800px] sm:min-w-0 w-full flex justify-center py-4">
+          <div className="sui-card w-full p-4 sm:p-6 md:p-8 flex flex-col items-center overflow-x-auto">
+            <div className="w-full flex justify-center py-4">
               <GitHubCalendar
                 username="ankitsingh711"
                 colorScheme="dark"
-                fontSize={14}
-                blockSize={13}
-                blockMargin={5}
+                fontSize={12}
+                blockSize={10}
+                blockMargin={4}
                 theme={{
                   dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
                 }}

@@ -54,7 +54,7 @@ export default function About() {
         className="section-container relative z-10"
       >
         {/* Two-column layout */}
-        <div className="grid lg:grid-cols-[55%_45%] gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 lg:gap-16 items-start">
 
           {/* ── LEFT ── */}
           <div>
@@ -89,7 +89,7 @@ export default function About() {
                 >
                   <h2
                     className={`font-manrope font-black leading-[0.92] select-none ${stroke ? 'text-stroke-primary' : 'text-on-background'}`}
-                    style={{ fontSize: 'clamp(44px, 5.8vw, 90px)', letterSpacing: '-0.035em' }}
+                    style={{ fontSize: 'clamp(36px, 5.8vw, 90px)', letterSpacing: '-0.035em' }}
                   >
                     {text}
                   </h2>
@@ -184,17 +184,17 @@ export default function About() {
           </div>
 
           {/* ── RIGHT ── */}
-          <div className="space-y-4">
+          <div className="grid grid-cols-2 lg:grid-cols-1 gap-4">
             {stats.map((stat, i) => (
               <motion.div
                 key={stat.label}
                 variants={fadeIn('left', 'tween', 0.1 + i * 0.1, 0.55)}
-                className="sui-card p-6"
+                className="sui-card p-4 sm:p-6"
               >
                 <div
                   className="font-manrope font-black mb-1"
                   style={{
-                    fontSize: 'clamp(40px, 4vw, 56px)',
+                    fontSize: 'clamp(32px, 4vw, 56px)',
                     lineHeight: 1,
                     background:
                       stat.color === 'primary'
@@ -209,7 +209,7 @@ export default function About() {
                 >
                   {stat.value}
                 </div>
-                <div className="text-on-background font-manrope font-bold text-base mb-0.5">
+                <div className="text-on-background font-manrope font-bold text-sm sm:text-base mb-0.5">
                   {stat.label}
                 </div>
                 <div className="text-on-surface-variant text-xs font-inter">

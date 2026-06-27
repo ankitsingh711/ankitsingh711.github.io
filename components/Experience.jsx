@@ -92,7 +92,7 @@ export default function Experience() {
             >
               <h2
                 className={`font-manrope font-black leading-[0.92] select-none ${stroke ? 'text-stroke-primary' : 'text-on-background'}`}
-                style={{ fontSize: 'clamp(44px, 5.8vw, 90px)', letterSpacing: '-0.035em' }}
+                style={{ fontSize: 'clamp(36px, 5.8vw, 90px)', letterSpacing: '-0.035em' }}
               >
                 {text}
               </h2>
@@ -118,7 +118,7 @@ export default function Experience() {
             >
               {/* Current role gets animated border */}
               <div className={`relative ${exp.current ? 'animated-border' : ''}`}>
-                <div className="sui-card p-8 relative overflow-hidden">
+                <div className="sui-card p-4 sm:p-8 relative overflow-hidden">
                   {/* Large entry number — decorative */}
                   <div
                     className="absolute top-4 right-6 font-manrope font-black select-none pointer-events-none"
@@ -130,7 +130,7 @@ export default function Experience() {
                   {/* Top bar */}
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-5 relative z-10">
                     <div>
-                      <h3 className="font-manrope font-black text-on-background" style={{ fontSize: 'clamp(20px, 2.5vw, 28px)' }}>
+                      <h3 className="font-manrope font-black text-on-background break-words" style={{ fontSize: 'clamp(16px, 2.5vw, 28px)' }}>
                         {exp.company}
                       </h3>
                       <p className="text-primary text-sm font-inter font-medium mt-0.5">

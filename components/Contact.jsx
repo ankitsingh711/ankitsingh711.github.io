@@ -99,7 +99,7 @@ export default function Contact() {
             >
               <h2
                 className={`font-manrope font-black leading-[0.92] select-none ${stroke ? 'text-stroke-primary' : 'text-on-background'}`}
-                style={{ fontSize: 'clamp(40px, 5.5vw, 80px)', letterSpacing: '-0.035em' }}
+                style={{ fontSize: 'clamp(30px, 5.5vw, 80px)', letterSpacing: '-0.035em' }}
               >
                 {text}
               </h2>
@@ -125,7 +125,7 @@ export default function Contact() {
         </motion.p>
 
         {/* Main grid */}
-        <div className="grid lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
 
           {/* LEFT — Calendly */}
           <motion.div
@@ -149,11 +149,11 @@ export default function Contact() {
               </div>
 
               {/* Calendly iframe */}
-              <div style={{ overflow: 'hidden', height: '700px' }}>
+              <div style={{ overflow: 'hidden', height: 'clamp(500px, 80vh, 700px)' }}>
                 <iframe
                   src={`${CALENDLY_URL}?embed_type=Inline&hide_event_type_details=0&hide_gdpr_banner=1`}
                   width="100%"
-                  height="700"
+                  height="100%"
                   style={{ border: 'none', display: 'block', overflow: 'hidden' }}
                   title="Book a meeting with Ankit"
                 />

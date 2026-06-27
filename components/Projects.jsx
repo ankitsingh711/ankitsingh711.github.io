@@ -276,7 +276,7 @@ export default function Projects() {
             >
               <h2
                 className={`font-manrope font-black leading-[0.92] select-none ${stroke ? 'text-stroke-primary' : 'text-on-background'}`}
-                style={{ fontSize: 'clamp(44px, 5.8vw, 90px)', letterSpacing: '-0.035em' }}
+                style={{ fontSize: 'clamp(36px, 5.8vw, 90px)', letterSpacing: '-0.035em' }}
               >
                 {text}
               </h2>
@@ -306,7 +306,7 @@ export default function Projects() {
               <div
                 className="sui-card overflow-hidden flex flex-col"
                 style={{
-                  minHeight: '420px',
+                  minHeight: 'clamp(320px, 50vw, 420px)',
                   ...(hoveredId === project.id && project.glowColor
                     ? { borderColor: project.glowColor, boxShadow: `0 0 40px ${project.glowColor}` }
                     : {}),
@@ -319,6 +319,7 @@ export default function Projects() {
                       src={project.image}
                       alt={project.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                     />
                   ) : (
@@ -366,7 +367,7 @@ export default function Projects() {
         </div>
 
         {/* ── GRID (projects 2-7) ── */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {gridProjects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -391,6 +392,7 @@ export default function Projects() {
                         src={project.image}
                         alt={project.title}
                         fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                       />
                     ) : (

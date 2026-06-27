@@ -155,7 +155,7 @@ export default function Skills() {
             >
               <h2
                 className={`font-manrope font-black leading-[0.92] select-none ${stroke ? 'text-stroke-primary' : 'text-on-background'}`}
-                style={{ fontSize: 'clamp(44px, 5.8vw, 90px)', letterSpacing: '-0.035em' }}
+                style={{ fontSize: 'clamp(36px, 5.8vw, 90px)', letterSpacing: '-0.035em' }}
               >
                 {text}
               </h2>
@@ -211,7 +211,7 @@ export default function Skills() {
         {/* AI Engineering featured block */}
         <motion.div
           variants={fadeIn('up', 'tween', 0.4, 0.6)}
-          className="relative rounded-2xl p-8 overflow-hidden"
+          className="relative rounded-2xl p-4 sm:p-8 overflow-hidden"
           style={{
             background: 'rgba(159,167,255,0.02)',
             border: '1px solid rgba(98, 250, 227, 0.15)',
@@ -249,7 +249,7 @@ export default function Skills() {
           </div>
 
           {/* 3-col AI sub-groups */}
-          <div className="relative grid md:grid-cols-3 gap-6">
+          <div className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {aiSkillGroups.map((group) => (
               <div key={group.label}>
                 <div className={`flex items-center gap-2 mb-3 text-xs font-inter font-semibold uppercase tracking-widest ${

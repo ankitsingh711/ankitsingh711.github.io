@@ -104,7 +104,7 @@ export default function Testimonials() {
             >
               <h2
                 className={`font-manrope font-black leading-[0.92] select-none ${stroke ? 'text-stroke-primary' : 'text-on-background'}`}
-                style={{ fontSize: 'clamp(40px, 5.5vw, 82px)', letterSpacing: '-0.035em' }}
+                style={{ fontSize: 'clamp(30px, 5.5vw, 82px)', letterSpacing: '-0.035em' }}
               >
                 {text}
               </h2>
@@ -127,7 +127,7 @@ export default function Testimonials() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="sui-card p-7 h-full flex flex-col gap-5 relative overflow-hidden group">
+              <div className="sui-card p-5 sm:p-7 h-full flex flex-col gap-5 relative overflow-hidden group">
                 {/* Subtle glow on hover */}
                 <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none ${
                   t.color === 'secondary' ? 'bg-secondary/[0.03]' : t.color === 'tertiary' ? 'bg-tertiary/[0.03]' : 'bg-primary/[0.03]'
