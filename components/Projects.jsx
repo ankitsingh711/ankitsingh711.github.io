@@ -72,7 +72,7 @@ const projects = [
     description:
       'Enterprise-grade supply chain digitalization platform enabling seamless trade data exchange across global logistics networks. Built with microservice architecture serving 100K+ users.',
     technologies: ['React', 'Node.js', 'AWS', 'PostgreSQL', 'Docker'],
-    image: '/images/sgtradex.png',
+    image: '/images/sgtradex.webp',
     gradient: 'from-primary/20 via-tertiary/10 to-surface-container',
     glowColor: 'rgba(159, 167, 255, 0.12)',
     liveUrl: 'https://www.sgtradex.com',
@@ -86,7 +86,7 @@ const projects = [
     description:
       'High-performance entertainment booking engine serving millions of visitors. Optimized for speed with server-side rendering and edge caching across Azure infrastructure.',
     technologies: ['Next.js', 'TypeScript', 'Sanity', 'Azure', 'Redis'],
-    image: '/images/sixflags.png',
+    image: '/images/sixflags.webp',
     gradient: 'from-secondary/20 via-primary/10 to-surface-container',
     glowColor: 'rgba(98, 250, 227, 0.12)',
     liveUrl: 'https://sixflags.com',
@@ -100,7 +100,7 @@ const projects = [
     description:
       'Full-stack fashion discovery platform with AI-driven style recommendations and seamless checkout. Built mobile-first with performance-optimized rendering.',
     technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'Tailwind'],
-    image: '/images/styler.png',
+    image: '/images/styler.webp',
     gradient: 'from-tertiary/20 via-secondary/10 to-surface-container',
     glowColor: 'rgba(200, 144, 255, 0.12)',
     liveUrl: 'https://styller.netlify.app/index.html',
@@ -114,7 +114,7 @@ const projects = [
     description:
       'Full-stack online dental booking platform with real-time appointment management, automated reminders, and integrated payment processing.',
     technologies: ['React', 'Node.js', 'MongoDB', 'Express'],
-    image: '/images/smileslot.png',
+    image: '/images/smileslot.webp',
     gradient: 'from-primary/15 via-secondary/10 to-surface-container',
     glowColor: 'rgba(159, 167, 255, 0.12)',
     liveUrl: 'https://smileslot.netlify.app/',

@@ -70,9 +70,9 @@ export default function Hero() {
 
           {/* Headline — word-by-word clip reveal */}
           {[
-            { text: 'Building', style: 'text-on-background' },
-            { text: 'the Future,', stroke: true },
-            { text: 'one line.', style: 'text-on-background' },
+            { text: 'From Idea', style: 'text-on-background' },
+            { text: 'to Production,', stroke: true },
+            { text: 'AI-First.', style: 'text-on-background' },
           ].map(({ text, style, stroke }, i) => (
             <div key={text} className="overflow-hidden" style={{ marginBottom: i < 2 ? '0.15em' : '1.4rem' }}>
               <motion.div

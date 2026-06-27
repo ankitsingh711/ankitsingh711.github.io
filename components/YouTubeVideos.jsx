@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { staggerContainer, textVariant, fadeIn } from '@/utils/motion';
+import { staggerContainer, fadeIn } from '@/utils/motion';
 
 const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
 const CHANNEL_HANDLE = '@ankkoder';
@@ -95,7 +95,7 @@ function VideoCard({ video, index }) {
         href={`https://www.youtube.com/watch?v=${video.id}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="block bg-surface-container rounded-2xl overflow-hidden hover:bg-surface-container-high transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5"
+        className="block sui-card overflow-hidden"
       >
         {/* Thumbnail */}
         <div className="relative aspect-video overflow-hidden bg-surface-container-high">
@@ -182,7 +182,7 @@ function VideoCard({ video, index }) {
 
 function SkeletonCard() {
   return (
-    <div className="bg-surface-container rounded-2xl overflow-hidden animate-pulse">
+    <div className="sui-card overflow-hidden animate-pulse">
       <div className="aspect-video bg-surface-container-high" />
       <div className="p-4 md:p-5 space-y-3">
         <div className="h-4 bg-surface-container-high rounded-full w-full" />
@@ -226,59 +226,110 @@ export default function YouTubeVideos() {
 
   const videos = activeTab === 'latest' ? latest : popular;
   const tabs = [
-    { id: 'latest', label: 'Latest Uploads', icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    )},
-    { id: 'popular', label: 'Most Viewed', icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-      </svg>
-    )},
+    {
+      id: 'latest',
+      label: 'Latest',
+      icon: (
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+    },
+    {
+      id: 'popular',
+      label: 'Popular',
+      icon: (
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+        </svg>
+      ),
+    },
   ];
 
   return (
-    <section id="youtube" className="section-padding">
+    <section
+      id="youtube"
+      className="section-padding relative overflow-hidden section-divider"
+    >
+      {/* Backgrounds */}
+      <div className="absolute inset-0 dot-grid pointer-events-none" />
+      <div className="absolute inset-0 section-glow-secondary pointer-events-none" />
+
+      {/* Faded section label */}
+      <div className="absolute top-10 right-6 lg:right-12 select-none pointer-events-none">
+        <span className="section-bg-label">ANKODER</span>
+      </div>
+
       <motion.div
-        variants={staggerContainer(0.25)}
+        variants={staggerContainer(0.1, 0)}
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0.1 }}
-        className="section-container"
+        className="section-container relative z-10"
       >
-        {/* Section Header */}
-        <motion.div variants={textVariant()} className="mb-12 text-center md:text-left">
-          <p className="text-sm tracking-[0.2em] uppercase font-inter mb-4" style={{ color: 'var(--color-error)' }}>
-            YouTube
-          </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-manrope font-bold text-on-background mb-4">
-            My Videos
-          </h2>
-          <p className="text-on-surface-variant text-lg font-inter max-w-2xl mx-auto md:mx-0">
-            Coding tutorials, tech insights, and development content from my YouTube channel.
-          </p>
+        {/* Section marker */}
+        <motion.div
+          variants={fadeIn('right', 'tween', 0, 0.5)}
+          className="flex items-center gap-4 mb-10"
+        >
+          <span className="font-mono text-primary/50 text-xs font-bold tracking-[0.22em] select-none">
+            08 / YOUTUBE
+          </span>
+          <div
+            className="h-px flex-1 max-w-[72px]"
+            style={{ background: 'linear-gradient(to right, rgba(159,167,255,0.4), transparent)' }}
+          />
         </motion.div>
 
-        {/* Tabs */}
-        <motion.div variants={fadeIn('up', 'spring', 0.1, 0.75)} className="flex flex-wrap gap-2 mb-10">
+        {/* Heading — clip reveal */}
+        {[
+          { text: 'Latest', stroke: false },
+          { text: 'Videos', stroke: true },
+        ].map(({ text, stroke }, i) => (
+          <div key={text} className="overflow-hidden" style={{ marginBottom: i === 0 ? '0.12em' : '1.6rem' }}>
+            <motion.div
+              variants={{
+                hidden: { y: '105%' },
+                show: {
+                  y: 0,
+                  transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.08 + i * 0.1 },
+                },
+              }}
+            >
+              <h2
+                className={`font-manrope font-black leading-[0.92] select-none ${stroke ? 'text-stroke-primary' : 'text-on-background'}`}
+                style={{ fontSize: 'clamp(40px, 5.5vw, 82px)', letterSpacing: '-0.035em' }}
+              >
+                {text}
+              </h2>
+            </motion.div>
+          </div>
+        ))}
+
+        {/* Gradient line */}
+        <motion.div
+          variants={{
+            hidden: { scaleX: 0 },
+            show: { scaleX: 1, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.3 } },
+          }}
+          className="origin-left gradient-line mb-14"
+        />
+
+        {/* Tabs — bordered pills */}
+        <motion.div
+          variants={fadeIn('up', 'tween', 0.1, 0.75)}
+          className="flex flex-wrap gap-3 mb-10"
+        >
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-inter font-medium transition-all duration-300 ${
                 activeTab === tab.id
-                  ? 'text-on-primary'
-                  : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
+                  ? 'gradient-primary text-on-primary'
+                  : 'border border-white/10 text-on-surface-variant hover:border-white/20 hover:text-on-surface'
               }`}
             >
-              {activeTab === tab.id && (
-                <motion.span
-                  layoutId="youtubeTabIndicator"
-                  className="absolute inset-0 gradient-primary rounded-full -z-10"
-                  transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-                />
-              )}
               {tab.icon}
               {tab.label}
             </button>
@@ -288,10 +339,10 @@ export default function YouTubeVideos() {
         {/* Error State */}
         {error && !loading && (
           <motion.div
-            variants={fadeIn('up', 'spring', 0.2, 0.75)}
+            variants={fadeIn('up', 'tween', 0.2, 0.75)}
             className="text-center py-16"
           >
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-surface-container mb-6">
+            <div className="sui-card inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-6">
               <svg className="w-10 h-10 text-on-surface-variant" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
               </svg>
@@ -342,14 +393,14 @@ export default function YouTubeVideos() {
 
         {/* Channel CTA */}
         <motion.div
-          variants={fadeIn('up', 'spring', 0.3, 0.75)}
+          variants={fadeIn('up', 'tween', 0.3, 0.75)}
           className="mt-12 flex justify-center"
         >
           <a
             href="https://www.youtube.com/@ankkoder"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/10 transition-all duration-500 hover:-translate-y-0.5 hover:shadow-lg"
+            className="group inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl sui-card border border-outline-variant/10 transition-all duration-500 hover:-translate-y-0.5 hover:shadow-lg"
           >
             <div className="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center shadow-md shadow-red-600/20 group-hover:shadow-red-600/40 transition-shadow">
               <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -361,7 +412,7 @@ export default function YouTubeVideos() {
                 Subscribe to @ankkoder
               </p>
               <p className="text-on-surface-variant text-[11px] font-inter">
-                More tutorials & dev content →
+                More tutorials &amp; dev content →
               </p>
             </div>
           </a>

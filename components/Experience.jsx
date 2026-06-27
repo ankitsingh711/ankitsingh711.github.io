@@ -7,7 +7,7 @@ const experiences = [
   {
     company: 'Tuna Software Solution Pvt. Ltd.',
     role: 'Full Stack Engineer',
-    period: '2023 — 2026',
+    period: '2023 — Present',
     description:
       'Leading development of enterprise cloud solutions, optimizing backend processing times by 40% and mentoring junior dev teams. Built and deployed scalable microservice architectures serving 100K+ users.',
     technologies: ['React', 'Node.js', 'AWS', 'MongoDB', 'Docker', 'GraphQL'],

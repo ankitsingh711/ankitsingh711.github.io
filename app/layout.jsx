@@ -23,43 +23,65 @@ const inter = DM_Sans({
 });
 
 export const metadata = {
-  title: 'ANKODER — Full Stack Developer',
+  title: 'Ankit Singh — Full Stack & AI Engineer',
   description:
-    'Ankit Singh — Full Stack Developer building scalable, cloud-ready applications with modern engineering practices. Specializing in React, Node.js, Next.js, and cloud infrastructure.',
+    'Ankit Singh is a Full Stack & AI Engineer based in Lucknow, India. 3+ years building production web platforms, LLM agents, RAG pipelines, and cloud-native architectures. Available for freelance and full-time roles.',
   keywords: [
     'Ankit Singh',
     'Full Stack Developer',
+    'AI Engineer',
+    'LLM Engineer',
+    'RAG',
+    'LangChain',
     'React Developer',
     'Node.js Developer',
     'Next.js',
-    'MERN Stack',
     'Portfolio',
     'Software Engineer',
-    'Web Developer',
-    'Cloud',
-    'DevOps',
+    'AI Agent',
+    'Cloud Architect',
+    'Lucknow',
+    'India',
   ],
   authors: [{ name: 'Ankit Singh', url: 'https://ankitsingh711.github.io' }],
   creator: 'Ankit Singh',
+  metadataBase: new URL('https://ankitsingh711.github.io'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://ankitsingh711.github.io',
-    title: 'ANKODER — Full Stack Developer',
+    title: 'Ankit Singh — Full Stack & AI Engineer',
     description:
-      'Building scalable, cloud-ready applications with modern engineering practices.',
-    siteName: 'ANKODER',
+      'Building AI-powered products from idea to production. 3+ years, 10+ projects, 8+ AI apps shipped.',
+    siteName: 'Ankit Singh Portfolio',
+    images: [
+      {
+        url: '/images/ankit-profile.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Ankit Singh — Full Stack & AI Engineer',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ANKODER — Full Stack Developer',
+    title: 'Ankit Singh — Full Stack & AI Engineer',
     description:
-      'Building scalable, cloud-ready applications with modern engineering practices.',
+      'Building AI-powered products from idea to production. 3+ years, 10+ projects, 8+ AI apps shipped.',
     creator: '@AnkitSingh711_',
+    images: ['/images/ankit-profile.jpg'],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+    },
+  },
+  alternates: {
+    canonical: 'https://ankitsingh711.github.io',
   },
 };
 
@@ -67,6 +89,27 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${manrope.variable} ${inter.variable}`} suppressHydrationWarning>
       <body className="font-inter antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Ankit Singh',
+              url: 'https://ankitsingh711.github.io',
+              jobTitle: 'Full Stack & AI Engineer',
+              worksFor: { '@type': 'Organization', name: 'Tuna Software Solution Pvt. Ltd.' },
+              address: { '@type': 'PostalAddress', addressLocality: 'Lucknow', addressCountry: 'IN' },
+              sameAs: [
+                'https://github.com/ankitsingh711',
+                'https://linkedin.com/in/ankit-singh2127',
+                'https://twitter.com/AnkitSingh711_',
+                'https://www.youtube.com/@ankkoder',
+              ],
+              knowsAbout: ['React', 'Next.js', 'Node.js', 'AI Engineering', 'LangChain', 'RAG', 'AWS', 'TypeScript'],
+            }),
+          }}
+        />
         <ThemeProvider>
           <CustomCursor />
           <FeaturePopup />
