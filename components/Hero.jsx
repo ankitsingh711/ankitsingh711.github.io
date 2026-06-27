@@ -211,7 +211,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.8 }}
-              className="absolute -bottom-0 left-1 -translate-x-[55%] z-20 whitespace-nowrap"
+              className="absolute bottom-[7%] left-1/2 -translate-x-1/2 z-20 whitespace-nowrap"
             >
               <a
                 href="https://www.youtube.com/@ankkoder"

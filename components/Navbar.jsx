@@ -40,7 +40,7 @@ export default function Navbar() {
   }, []);
 
   const handleResumeDownload = () => {
-    const fileId = '1jmjW5--EHX_rSb8SHJzmHEZZDbriOHv_';
+    const fileId = '1NzgR8nOyQylmmDTaOd1i_MU7OS_OC6uD';
     window.open(
       `https://drive.google.com/uc?export=download&id=${fileId}`,
       '_blank'

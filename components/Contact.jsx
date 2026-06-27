@@ -41,7 +41,7 @@ export default function Contact() {
         <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Calendly Inline Embed */}
           <motion.div variants={fadeIn('right', 'tween', 0.1, 0.5)} className="lg:col-span-3">
-            <div className="sui-card overflow-hidden" style={{ minHeight: '660px' }}>
+            <div className="sui-card overflow-hidden">
               {/* Card header */}
               <div className="px-6 pt-6 pb-4 border-b border-white/[0.06]">
                 <div className="flex items-center gap-3">
@@ -57,14 +57,16 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Calendly iframe */}
-              <iframe
-                src={`${CALENDLY_URL}?embed_type=Inline&hide_event_type_details=0&hide_gdpr_banner=1`}
-                width="100%"
-                height="620"
-                style={{ border: 'none', display: 'block' }}
-                title="Book a meeting with Ankit"
-              />
+              {/* Calendly iframe — tall enough so no internal scroll appears */}
+              <div style={{ overflow: 'hidden', height: '700px' }}>
+                <iframe
+                  src={`${CALENDLY_URL}?embed_type=Inline&hide_event_type_details=0&hide_gdpr_banner=1`}
+                  width="100%"
+                  height="700"
+                  style={{ border: 'none', display: 'block', overflow: 'hidden' }}
+                  title="Book a meeting with Ankit"
+                />
+              </div>
             </div>
           </motion.div>
 
