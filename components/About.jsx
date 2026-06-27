@@ -8,14 +8,18 @@ export default function About() {
   return (
     <section
       id="about"
-      className="section-padding bg-surface-container-low"
+      className="section-padding relative overflow-hidden section-divider"
     >
-      <motion.div 
+      {/* SUI backgrounds */}
+      <div className="absolute inset-0 dot-grid pointer-events-none" />
+      <div className="absolute inset-0 section-glow-secondary pointer-events-none" />
+
+      <motion.div
         variants={staggerContainer()}
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0.1 }}
-        className="section-container"
+        className="section-container relative z-10"
       >
         {/* Section Label */}
         <motion.div variants={textVariant()} className="mb-8">
@@ -89,6 +93,14 @@ export default function About() {
                   <span className="text-primary">&quot;Node&quot;</span>
                   <span className="text-on-surface-variant">,</span>{' '}
                   <span className="text-primary">&quot;Cloud&quot;</span>
+                  <span className="text-on-surface-variant">,</span>{' '}
+                  <span className="text-primary">&quot;Agentic AI&quot;</span>
+                  <span className="text-on-surface-variant">,</span>{' '}
+                  <span className="text-primary">&quot;LLM&quot;</span>
+                  <span className="text-on-surface-variant">,</span>{' '}
+                  <span className="text-primary">&quot;RAG&quot;</span>
+                  <span className="text-on-surface-variant">,</span>{' '}
+                  <span className="text-primary">&quot;Python&quot;</span>
                   <span className="text-on-surface-variant">],</span>
                   {'\n'}
                   {'  '}
@@ -106,27 +118,27 @@ export default function About() {
           <motion.div variants={fadeIn('left', 'tween', 0.2, 0.5)} className="lg:col-span-2 space-y-4">
             {[
               {
-                value: '3+',
+                value: '4+',
                 label: 'Years of Experience',
                 desc: 'Building production-grade applications',
                 color: 'primary',
               },
               {
-                value: '10+',
+                value: '12+',
                 label: 'Projects Delivered',
                 desc: 'Enterprise & creative applications',
                 color: 'secondary',
               },
               {
-                value: '16+',
+                value: '20+',
                 label: 'Technologies',
-                desc: 'Frontend, backend, cloud & DevOps',
+                desc: 'Agentic AI, Frontend, Backend, Cloud & DevOps',
                 color: 'tertiary',
               },
             ].map((stat) => (
               <div
                 key={stat.label}
-                className="bg-surface-container rounded-2xl p-6 hover:bg-surface-container-high transition-all duration-500 group"
+                className="sui-card rounded-2xl p-6 group"
               >
                 <div
                   className={`text-3xl font-manrope font-bold mb-1 ${

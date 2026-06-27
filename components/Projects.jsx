@@ -56,13 +56,17 @@ export default function Projects() {
   const [hoveredId, setHoveredId] = useState(null);
 
   return (
-    <section id="projects" className="section-padding">
-      <motion.div 
+    <section id="projects" className="section-padding relative overflow-hidden section-divider">
+      {/* SUI backgrounds */}
+      <div className="absolute inset-0 dot-grid pointer-events-none" />
+      <div className="absolute inset-0 section-glow-tertiary pointer-events-none" />
+
+      <motion.div
         variants={staggerContainer(0.25)}
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0.1 }}
-        className="section-container"
+        className="section-container relative z-10"
       >
         {/* Section Header */}
         <motion.div variants={textVariant()} className="mb-16">
@@ -87,7 +91,7 @@ export default function Projects() {
               onMouseEnter={() => setHoveredId(project.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              <div className="bg-surface-container rounded-2xl overflow-hidden hover:bg-surface-container-high transition-all duration-500 hover:-translate-y-1">
+              <div className="sui-card overflow-hidden" style={{ borderRadius: '16px' }}>
                 {/* Image / Gradient Area */}
                 <div className={`relative h-52 md:h-64 bg-gradient-to-br ${project.gradient} overflow-hidden`}>
                   {project.image ? (

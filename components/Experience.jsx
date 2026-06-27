@@ -37,14 +37,18 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="section-padding bg-surface-container-low"
+      className="section-padding relative overflow-hidden section-divider"
     >
-      <motion.div 
+      {/* SUI backgrounds */}
+      <div className="absolute inset-0 dot-grid pointer-events-none" />
+      <div className="absolute inset-0 section-glow-secondary pointer-events-none" />
+
+      <motion.div
         variants={staggerContainer(0.2)}
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0.1 }}
-        className="section-container"
+        className="section-container relative z-10"
       >
         {/* Section Header */}
         <motion.div variants={textVariant()} className="mb-16">
@@ -68,13 +72,13 @@ export default function Experience() {
                 <div
                   className={`absolute left-0 md:left-8 top-2 -translate-x-1/2 w-4 h-4 rounded-full border-2 ${
                     exp.current
-                      ? 'border-primary bg-primary/30 shadow-[0_0_12px_rgba(159,167,255,0.4)]'
+                      ? 'border-primary bg-primary/30 shadow-[0_0_20px_rgba(159,167,255,0.6),0_0_40px_rgba(159,167,255,0.2)]'
                       : 'border-outline-variant bg-surface-container'
                   }`}
                 />
 
                 {/* Content */}
-                <div className="bg-surface-container rounded-2xl p-8 hover:bg-surface-container-high transition-all duration-500">
+                <div className="sui-card p-8">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-4">
                     <div>
                       <h3 className="text-xl md:text-2xl font-manrope font-bold text-on-background">
