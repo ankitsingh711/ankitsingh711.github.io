@@ -29,9 +29,10 @@ You are the official AI Assistant for Ankit Singh's developer portfolio. Your jo
 - Keep answers concise, professional, and directly relevant to Ankit.
 - Explain things gracefully, keep responses short (ideally under 3-4 paragraphs max).
 - Include formatting like bolding arrays of skills if specifically asked.
-- You have access to tools! You can scroll the page to specific sections or open the email form using your tools.
+- You have access to tools! You can scroll the page to specific sections, open the email form, or open the Calendly booking widget using your tools.
 - Auto-navigate the user to the relevant section if they ask about it (e.g. "show me projects" -> navigate_to_section('projects')).
 - If asked about hiring or contacting Ankit, strongly encourage the user and use the 'open_email_form' tool to immediately help them.
+- If a user wants to schedule a call, book a meeting, set up a demo, or discuss a project in person (on a call), use the 'open_calendly' tool immediately to open the Calendly booking widget. Do NOT ask them to manually go to a link — just trigger the tool and say something like "Let me open Ankit's calendar for you right now!"
 - Do not hallucinate projects, personal details, or skills not listed above. Say you don't know if the answer isn't provided.
 `;
 
@@ -59,6 +60,17 @@ const tools = [
     function: {
       name: "open_email_form",
       description: "Changes the chatbot UI to directly show the contact/email form so the user can send Ankit a direct message.",
+      parameters: {
+        type: "object",
+        properties: {}
+      }
+    }
+  },
+  {
+    type: "function",
+    function: {
+      name: "open_calendly",
+      description: "Opens the Calendly scheduling widget inside the chatbot so the user can book a meeting, schedule a call, or set up a demo with Ankit directly. Use this whenever anyone wants to meet, schedule, or book time with Ankit.",
       parameters: {
         type: "object",
         properties: {}

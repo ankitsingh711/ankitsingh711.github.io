@@ -1,8 +1,10 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { staggerContainer, textVariant, fadeIn } from '@/utils/motion';
+
+const CALENDLY_URL = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/developerankit2127';
 
 export default function Contact() {
   const sectionRef = useRef(null);
@@ -14,6 +16,17 @@ export default function Contact() {
     message: '',
   });
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
+  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (isCalendlyOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isCalendlyOpen]);
 
 
 
@@ -189,6 +202,35 @@ export default function Contact() {
 
           {/* Contact Info */}
           <motion.div variants={fadeIn('left', 'tween', 0.2, 0.5)} className="lg:col-span-2 space-y-6">
+
+            {/* Book a Meeting */}
+            <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl p-6 border border-primary/10 hover:border-primary/20 transition-all duration-500">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-xl bg-primary/15 text-primary shrink-0">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <p className="text-on-surface-variant text-sm font-inter mb-1">
+                    Schedule a Call
+                  </p>
+                  <p className="text-on-background font-inter font-medium text-sm mb-3">
+                    Book a free 30-min meeting directly on my calendar.
+                  </p>
+                  <button
+                    onClick={() => setIsCalendlyOpen(true)}
+                    className="inline-flex items-center gap-2 bg-primary text-white text-xs font-inter font-semibold px-4 py-2.5 rounded-xl hover:bg-primary/90 hover:shadow-glow active:scale-95 transition-all duration-300"
+                  >
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    Book a Meeting
+                  </button>
+                </div>
+              </div>
+            </div>
+            
             {/* Email */}
             <div className="bg-surface-container rounded-2xl p-6 hover:bg-surface-container-high transition-all duration-500">
               <div className="flex items-start gap-4">
@@ -339,6 +381,78 @@ export default function Contact() {
           </motion.div>
         </div>
       </motion.div>
+
+      {/* Calendly Modal */}
+      <AnimatePresence>
+        {isCalendlyOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[2000] flex items-center justify-center p-4"
+            onClick={(e) => { if (e.target === e.currentTarget) setIsCalendlyOpen(false); }}
+          >
+            {/* Backdrop */}
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+
+            {/* Modal */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              className="relative w-full max-w-3xl h-[85vh] bg-surface rounded-3xl shadow-2xl overflow-hidden flex flex-col"
+            >
+              {/* Modal Header */}
+              <div className="flex items-center justify-between px-8 py-5 shrink-0 border-b border-outline-variant/10">
+                <div>
+                  <h3 className="text-on-background font-manrope font-bold text-lg">Book a Meeting</h3>
+                  <p className="text-on-surface-variant text-sm font-inter">Pick a slot — you&apos;ll get an invite right after booking.</p>
+                </div>
+                <button
+                  onClick={() => setIsCalendlyOpen(false)}
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all"
+                  aria-label="Close"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Calendly Embed */}
+              <div className="flex-1 relative">
+                <iframe
+                  src={`${CALENDLY_URL}?embed_type=Inline&hide_event_type_details=0&hide_gdpr_banner=1`}
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  title="Schedule a meeting with Ankit"
+                  className="w-full h-full"
+                  style={{ border: 'none' }}
+                />
+              </div>
+
+              {/* Modal Footer */}
+              <div className="px-8 py-4 shrink-0 border-t border-outline-variant/10 flex items-center justify-between">
+                <p className="text-on-surface-variant text-xs font-inter">Powered by Calendly · Invites sent to both parties automatically</p>
+                <a
+                  href={CALENDLY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-xs text-primary font-inter hover:underline"
+                >
+                  Open in Calendly
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

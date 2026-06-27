@@ -3,17 +3,19 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const CALENDLY_URL = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/developerankit2127';
+
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
-  const [view, setView] = useState('chat'); // 'chat' | 'email'
+  const [view, setView] = useState('chat'); // 'chat' | 'email' | 'calendly'
 
   // Chat State
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: "Hi! I'm Ankit's AI assistant. Ask me anything about his skills, projects, or background!" }
+    { role: 'assistant', content: "Hi! I'm Ankit's AI assistant. Ask me anything about his skills, projects, or background — or type \"book a meeting\" to schedule a call!" }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  
+
   const messagesEndRef = useRef(null);
 
   // Email State
@@ -30,29 +32,27 @@ export default function Chatbot() {
     e.preventDefault();
     if (!input.trim()) return;
 
-    // Build the list of messages locally WITHOUT side-effect messages from earlier, or just keep string content
     const userMsg = { role: 'user', content: input.trim() };
     const latestMessages = [...messages, userMsg];
-    
+
     setMessages(latestMessages);
     setInput('');
     setIsTyping(true);
 
     try {
-      // Send only pure text messages back to API for context
       const cleanMessages = latestMessages.map(m => ({
         role: m.role,
-        content: m.content.replace(/\n\*.*?\*$/, "").trim() // Remove our internal action logs before sending
+        content: m.content.replace(/\n\*.*?\*$/, "").trim()
       })).slice(-10);
 
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: cleanMessages }), 
+        body: JSON.stringify({ messages: cleanMessages }),
       });
 
       const data = await res.json();
-      
+
       if (res.ok) {
         if (data.tool_calls) {
           let actionMessage = data.message || "";
@@ -70,6 +70,10 @@ export default function Chatbot() {
             } else if (tool.function.name === 'open_email_form') {
               setView('email');
               actionMessage += `\n*✉️ Opening direct email form...*`;
+            } else if (tool.function.name === 'open_calendly') {
+              setView('calendly');
+              actionMessage = actionMessage || "Let me open Ankit's calendar for you right now! Pick a time that works for you.";
+              actionMessage += `\n*📅 Opening Calendly scheduler...*`;
             }
           }
           setMessages((prev) => [...prev, { role: 'assistant', content: actionMessage.trim() }]);
@@ -110,7 +114,7 @@ export default function Chatbot() {
       setTimeout(() => {
         setEmailStatus('idle');
         setEmailData({ email: '', message: '' });
-        setView('chat'); // Go back to chat
+        setView('chat');
       }, 3000);
 
     } catch (error) {
@@ -144,7 +148,7 @@ export default function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 w-[350px] sm:w-[400px] h-[550px] max-h-[80vh] bg-surface/95 backdrop-blur-2xl rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] flex flex-col overflow-hidden z-[1001]"
+            className="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 w-[350px] sm:w-[400px] h-[580px] max-h-[85vh] bg-surface/95 backdrop-blur-2xl rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] flex flex-col overflow-hidden z-[1001]"
           >
             {/* Header */}
             <div className="bg-transparent py-5 px-6 flex items-center justify-between shrink-0">
@@ -160,21 +164,35 @@ export default function Chatbot() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-2">
                 {view === 'chat' ? (
-                  <button 
-                    onClick={() => setView('email')}
-                    className="p-1.5 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors flex items-center justify-center"
-                    title="Direct Mail"
-                    aria-label="Send Direct Mail"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </button>
+                  <>
+                    {/* Book Meeting Button */}
+                    <button
+                      onClick={() => setView('calendly')}
+                      className="p-1.5 bg-secondary/10 text-secondary rounded-lg hover:bg-secondary/20 transition-colors flex items-center justify-center"
+                      title="Book a Meeting"
+                      aria-label="Book a Meeting"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </button>
+                    {/* Email Button */}
+                    <button
+                      onClick={() => setView('email')}
+                      className="p-1.5 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors flex items-center justify-center"
+                      title="Direct Mail"
+                      aria-label="Send Direct Mail"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </button>
+                  </>
                 ) : (
-                  <button 
+                  <button
                     onClick={() => setView('chat')}
                     className="text-xs font-inter font-medium bg-surface-variant text-on-surface px-3 py-1.5 rounded-lg hover:bg-surface-variant-high transition-colors"
                   >
@@ -191,14 +209,15 @@ export default function Chatbot() {
             </div>
 
             {/* Body */}
-            <div className="flex-1 overflow-y-auto p-5 space-y-4 scroll-smooth">
+            <div className="flex-1 overflow-y-auto scroll-smooth">
+              {/* Chat View */}
               {view === 'chat' && (
-                <>
+                <div className="p-5 space-y-4">
                   {messages.map((msg, idx) => (
                     <div key={idx} className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
                       <div className={`px-5 py-3.5 rounded-2xl max-w-[85%] text-[13px] md:text-sm font-inter leading-relaxed whitespace-pre-wrap ${
-                        msg.role === 'user' 
-                          ? 'bg-primary text-white rounded-br-sm shadow-md' 
+                        msg.role === 'user'
+                          ? 'bg-primary text-white rounded-br-sm shadow-md'
                           : 'bg-surface-container-highest text-on-surface rounded-bl-sm shadow-sm'
                       }`}>
                         {msg.content}
@@ -215,19 +234,20 @@ export default function Chatbot() {
                     </div>
                   )}
                   <div ref={messagesEndRef} className="h-1" />
-                </>
+                </div>
               )}
 
+              {/* Email View */}
               {view === 'email' && (
-                <div className="h-full flex flex-col justify-center animate-in fade-in zoom-in duration-300">
+                <div className="p-5 h-full flex flex-col justify-center animate-in fade-in zoom-in duration-300">
                   <h4 className="text-on-background font-manrope font-semibold text-lg mb-2">Send Direct Email</h4>
-                  <p className="text-on-surface-variant text-xs mb-6 font-inter">Skip the chat and send an email straight to Ankit's personal inbox.</p>
-                  
+                  <p className="text-on-surface-variant text-xs mb-6 font-inter">Skip the chat and send an email straight to Ankit&apos;s personal inbox.</p>
+
                   <form onSubmit={handleSendEmail} className="space-y-4 w-full">
                     <div>
-                      <input 
-                        type="email" 
-                        placeholder="Your Email Address" 
+                      <input
+                        type="email"
+                        placeholder="Your Email Address"
                         required
                         disabled={emailStatus !== 'idle'}
                         value={emailData.email}
@@ -236,8 +256,8 @@ export default function Chatbot() {
                       />
                     </div>
                     <div>
-                      <textarea 
-                        placeholder="How can I help you?" 
+                      <textarea
+                        placeholder="How can I help you?"
                         rows={4}
                         required
                         disabled={emailStatus !== 'idle'}
@@ -246,8 +266,8 @@ export default function Chatbot() {
                         className="w-full bg-surface-container-highest text-on-surface text-sm px-5 py-4 rounded-[1.25rem] focus:ring-2 focus:ring-primary/50 focus:outline-none resize-none disabled:opacity-50 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.05)] transition-all"
                       />
                     </div>
-                    <button 
-                      type="submit" 
+                    <button
+                      type="submit"
                       disabled={emailStatus !== 'idle'}
                       className="w-full bg-primary text-white font-medium py-3 rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all text-sm disabled:opacity-60 disabled:cursor-not-allowed"
                     >
@@ -256,9 +276,43 @@ export default function Chatbot() {
                   </form>
                 </div>
               )}
+
+              {/* Calendly View */}
+              {view === 'calendly' && (
+                <div className="flex flex-col h-full animate-in fade-in duration-300">
+                  <div className="px-5 pb-3 shrink-0">
+                    <h4 className="text-on-background font-manrope font-semibold text-base mb-0.5">Book a Meeting</h4>
+                    <p className="text-on-surface-variant text-xs font-inter">Pick a time that works for you — invites sent to both parties automatically.</p>
+                  </div>
+                  <div className="flex-1 relative">
+                    <iframe
+                      src={`${CALENDLY_URL}?embed_type=Inline&hide_event_type_details=0&hide_gdpr_banner=1`}
+                      width="100%"
+                      height="100%"
+                      frameBorder="0"
+                      title="Book a meeting with Ankit"
+                      className="w-full h-full min-h-[420px]"
+                      style={{ border: 'none' }}
+                    />
+                  </div>
+                  <div className="px-5 py-3 shrink-0 border-t border-outline-variant/10">
+                    <a
+                      href={CALENDLY_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 text-xs text-on-surface-variant font-inter hover:text-primary transition-colors"
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                      Open in full screen
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* Input Footer */}
+            {/* Input Footer — only in chat view */}
             {view === 'chat' && (
               <div className="p-4 px-5 pb-6 bg-gradient-to-t from-surface via-surface/95 to-transparent shrink-0">
                 <form onSubmit={handleSendMessage} className="relative">
