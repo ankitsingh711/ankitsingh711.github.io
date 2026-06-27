@@ -1,11 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { staggerContainer, textVariant, fadeIn } from '@/utils/motion';
+import { staggerContainer, fadeIn } from '@/utils/motion';
 
 const skillCategories = [
   {
     title: 'Frontend',
+    desc: 'UI / Interfaces',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
@@ -16,6 +17,7 @@ const skillCategories = [
   },
   {
     title: 'Backend',
+    desc: 'APIs / Databases',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" />
@@ -26,6 +28,7 @@ const skillCategories = [
   },
   {
     title: 'Cloud & DevOps',
+    desc: 'Infra / Deployment',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
@@ -84,12 +87,35 @@ const aiSkillGroups = [
   },
 ];
 
+const colorMap = {
+  primary: {
+    icon: 'bg-primary/10 text-primary',
+    border: 'border-l-2 border-primary/40',
+    text: 'text-primary',
+  },
+  secondary: {
+    icon: 'bg-secondary/10 text-secondary',
+    border: 'border-l-2 border-secondary/40',
+    text: 'text-secondary',
+  },
+  tertiary: {
+    icon: 'bg-tertiary/10 text-tertiary',
+    border: 'border-l-2 border-tertiary/40',
+    text: 'text-tertiary',
+  },
+};
+
 export default function Skills() {
   return (
     <section id="skills" className="section-padding relative overflow-hidden section-divider">
-      {/* SUI backgrounds */}
+      {/* Backgrounds */}
       <div className="absolute inset-0 dot-grid pointer-events-none" />
       <div className="absolute inset-0 section-glow pointer-events-none" />
+
+      {/* Faded section label */}
+      <div className="absolute top-10 right-6 lg:right-12 select-none pointer-events-none">
+        <span className="section-bg-label">SKILLS</span>
+      </div>
 
       <motion.div
         variants={staggerContainer(0.1, 0.1)}
@@ -98,55 +124,100 @@ export default function Skills() {
         viewport={{ once: false, amount: 0.1 }}
         className="section-container relative z-10"
       >
-        {/* Section Header */}
-        <motion.div variants={textVariant()} className="mb-16">
-          <p className="text-secondary text-sm tracking-[0.2em] uppercase font-inter mb-4">
-            Capabilities
-          </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-manrope font-bold text-on-background mb-4">
-            Technical Arsenal
-          </h2>
-          <p className="text-on-surface-variant text-lg font-inter max-w-2xl">
-            Full-stack engineering meets AI — tools and technologies I use to ship production software.
-          </p>
+        {/* Section marker */}
+        <motion.div
+          variants={fadeIn('right', 'tween', 0, 0.5)}
+          className="flex items-center gap-4 mb-10"
+        >
+          <span className="font-mono text-primary/50 text-xs font-bold tracking-[0.22em] select-none">
+            03 / SKILLS
+          </span>
+          <div
+            className="h-px flex-1 max-w-[72px]"
+            style={{ background: 'linear-gradient(to right, rgba(159,167,255,0.4), transparent)' }}
+          />
         </motion.div>
 
-        {/* Core Stack — 3 columns */}
-        <div className="grid md:grid-cols-3 gap-6 mb-6">
-          {skillCategories.map((category, index) => (
+        {/* Heading clip reveal */}
+        {[
+          { text: 'Technical', stroke: false },
+          { text: 'Arsenal', stroke: true },
+        ].map(({ text, stroke }, i) => (
+          <div key={text} className="overflow-hidden" style={{ marginBottom: i === 0 ? '0.12em' : '1.6rem' }}>
             <motion.div
-              variants={fadeIn('up', 'tween', index * 0.1, 0.5)}
-              key={category.title}
-              className="sui-card p-8"
+              variants={{
+                hidden: { y: '105%' },
+                show: {
+                  y: 0,
+                  transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.06 + i * 0.1 },
+                },
+              }}
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className={`p-2.5 rounded-xl ${
-                  category.color === 'primary' ? 'bg-primary/10 text-primary'
-                  : category.color === 'secondary' ? 'bg-secondary/10 text-secondary'
-                  : 'bg-tertiary/10 text-tertiary'
-                }`}>
-                  {category.icon}
-                </div>
-                <h3 className="text-xl font-manrope font-semibold text-on-background">
-                  {category.title}
-                </h3>
-              </div>
-              <div className="flex flex-wrap gap-2.5">
-                {category.skills.map((skill) => (
-                  <span key={skill} className="chip">{skill}</span>
-                ))}
-              </div>
+              <h2
+                className={`font-manrope font-black leading-[0.92] select-none ${stroke ? 'text-stroke-primary' : 'text-on-background'}`}
+                style={{ fontSize: 'clamp(44px, 5.8vw, 90px)', letterSpacing: '-0.035em' }}
+              >
+                {text}
+              </h2>
             </motion.div>
-          ))}
+          </div>
+        ))}
+
+        {/* Gradient line */}
+        <motion.div
+          variants={{
+            hidden: { scaleX: 0 },
+            show: { scaleX: 1, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.28 } },
+          }}
+          className="origin-left gradient-line mb-12"
+        />
+
+        {/* Horizontal category strips */}
+        <div className="space-y-4 mb-6">
+          {skillCategories.map((category, index) => {
+            const colors = colorMap[category.color];
+            return (
+              <motion.div
+                key={category.title}
+                variants={fadeIn('up', 'tween', 0.1 + index * 0.1, 0.55)}
+                className={`sui-card flex flex-col md:flex-row gap-0 overflow-hidden`}
+              >
+                {/* Left label */}
+                <div className={`flex items-start gap-4 p-6 md:w-48 shrink-0 ${colors.border} md:border-l-2 md:border-t-0 border-t-2 border-l-0`}>
+                  <div className={`p-2.5 rounded-xl shrink-0 ${colors.icon}`}>
+                    {category.icon}
+                  </div>
+                  <div>
+                    <div className="text-on-background font-bold font-manrope text-sm">{category.title}</div>
+                    <div className="text-on-surface-variant text-xs font-inter mt-0.5">{category.desc}</div>
+                  </div>
+                </div>
+
+                {/* Divider */}
+                <div className="hidden md:block w-px bg-white/[0.06] shrink-0" />
+                <div className="block md:hidden h-px bg-white/[0.06]" />
+
+                {/* Skills */}
+                <div className="flex flex-wrap gap-2 p-6 flex-1">
+                  {category.skills.map((skill) => (
+                    <span key={skill} className="chip">{skill}</span>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* AI Engineering — full-width highlighted card */}
+        {/* AI Engineering featured block */}
         <motion.div
-          variants={fadeIn('up', 'tween', 0.35, 0.6)}
-          className="relative sui-card p-8 overflow-hidden"
-          style={{ borderColor: 'rgba(98, 250, 227, 0.15)' }}
+          variants={fadeIn('up', 'tween', 0.4, 0.6)}
+          className="relative rounded-2xl p-8 overflow-hidden"
+          style={{
+            background: 'rgba(159,167,255,0.02)',
+            border: '1px solid rgba(98, 250, 227, 0.15)',
+          }}
         >
-          {/* Subtle AI glow inside card */}
+          {/* Inner glows */}
           <div className="absolute inset-0 pointer-events-none" style={{
             background: 'radial-gradient(ellipse 60% 80% at 80% 50%, rgba(200, 144, 255, 0.06) 0%, transparent 70%)',
           }} />
@@ -154,7 +225,7 @@ export default function Skills() {
             background: 'radial-gradient(ellipse 50% 80% at 20% 50%, rgba(98, 250, 227, 0.05) 0%, transparent 70%)',
           }} />
 
-          {/* AI section header */}
+          {/* AI header row */}
           <div className="relative flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
               <div className="p-2.5 rounded-xl bg-secondary/10 text-secondary">
@@ -163,8 +234,12 @@ export default function Skills() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-xl font-manrope font-semibold text-on-background">Artificial Intelligence</h3>
-                <p className="text-on-surface-variant text-xs font-inter mt-0.5">LLMs · RAG · Agents · AI Engineering</p>
+                <h3 className="text-xl font-manrope font-semibold text-on-background">
+                  Artificial Intelligence
+                </h3>
+                <p className="text-on-surface-variant text-xs font-inter mt-0.5">
+                  LLMs · RAG · Agents · AI Engineering
+                </p>
               </div>
             </div>
             <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-inter font-medium bg-secondary/10 text-secondary border border-secondary/20">

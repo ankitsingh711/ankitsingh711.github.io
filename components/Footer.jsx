@@ -4,24 +4,35 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden section-divider">
-      {/* SUI backgrounds */}
-      <div className="absolute inset-0 dot-grid pointer-events-none opacity-50" />
+    <footer className="relative overflow-hidden">
+      {/* Backgrounds */}
+      <div className="absolute inset-0 dot-grid pointer-events-none opacity-40" />
+
+      {/* Gradient line at top */}
+      <div className="gradient-line" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+
+        {/* Mono site marker */}
+        <div className="pt-8 pb-2">
+          <span className="font-mono text-on-surface-variant/30 text-[10px] tracking-[0.25em] uppercase select-none">
+            ankitsingh711.github.io
+          </span>
+        </div>
+
         {/* Main Footer — 4 columns */}
-        <div className="py-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-10 items-start">
+        <div className="py-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-10 items-start">
 
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <a href="#" className="inline-block mb-4 hover:opacity-80 transition-opacity">
+            <a href="#" className="inline-block mb-5 hover:opacity-80 transition-opacity">
               <Logo className="scale-75 sm:scale-90 md:scale-100 origin-left" />
             </a>
-            <p className="text-on-surface-variant text-sm font-inter leading-relaxed max-w-xs">
+            <p className="text-on-surface-variant text-sm font-inter leading-relaxed max-w-xs mb-6">
               Full Stack Developer passionate about creating innovative web
               solutions and delivering exceptional user experiences.
             </p>
-            <div className="flex gap-3 mt-5">
+            <div className="flex gap-3">
               {[
                 {
                   name: 'GitHub',
@@ -67,7 +78,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-on-background text-xs font-inter font-semibold tracking-[0.15em] uppercase mb-5">
+            <h4 className="text-on-background text-xs font-inter font-semibold tracking-[0.2em] uppercase mb-5">
               Navigation
             </h4>
             <nav className="space-y-3">
@@ -91,7 +102,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-on-background text-xs font-inter font-semibold tracking-[0.15em] uppercase mb-5">
+            <h4 className="text-on-background text-xs font-inter font-semibold tracking-[0.2em] uppercase mb-5">
               Contact
             </h4>
             <div className="space-y-3">
@@ -115,7 +126,7 @@ export default function Footer() {
 
           {/* Connect */}
           <div>
-            <h4 className="text-on-background text-xs font-inter font-semibold tracking-[0.15em] uppercase mb-5">
+            <h4 className="text-on-background text-xs font-inter font-semibold tracking-[0.2em] uppercase mb-5">
               Connect
             </h4>
             <div className="space-y-3">
@@ -155,15 +166,15 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Copyright Bar */}
+        {/* Bottom bar */}
         <div
           className="py-6 flex flex-col sm:flex-row justify-between items-center gap-4"
           style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
         >
-          <p className="text-on-surface-variant/60 text-xs font-inter">
+          <p className="text-on-surface-variant/50 text-xs font-inter">
             © {currentYear} Ankoder. All rights reserved.
           </p>
-          <p className="text-on-surface-variant/60 text-xs font-inter flex items-center gap-1">
+          <p className="text-on-surface-variant/50 text-xs font-inter flex items-center gap-1.5">
             Made with
             <span className="text-red-400 inline-block animate-pulse">❤</span>
             in India
