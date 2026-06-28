@@ -79,7 +79,7 @@ export default function Testimonials() {
         variants={staggerContainer(0.1, 0)}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false, amount: 0.08 }}
+        viewport={{ once: true, amount: 0.08 }}
         className="section-container relative z-10"
       >
         {/* Section marker */}

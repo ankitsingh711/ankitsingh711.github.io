@@ -58,7 +58,7 @@ export default function Experience() {
         variants={staggerContainer(0.15, 0)}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false, amount: 0.1 }}
+        viewport={{ once: true, amount: 0.1 }}
         className="section-container relative z-10"
       >
         {/* Section marker */}

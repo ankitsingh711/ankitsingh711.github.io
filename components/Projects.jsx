@@ -242,7 +242,7 @@ export default function Projects() {
         variants={staggerContainer(0.12, 0)}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false, amount: 0.05 }}
+        viewport={{ once: true, amount: 0.05 }}
         className="section-container relative z-10"
       >
         {/* Section marker */}

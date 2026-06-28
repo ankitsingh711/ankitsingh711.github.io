@@ -108,7 +108,7 @@ export default function Hero() {
             <div className="relative shrink-0">
               <div className="absolute -inset-1 rounded-full blur-sm" style={{ background: 'linear-gradient(135deg, rgba(159,167,255,0.5), rgba(200,144,255,0.3))' }} />
               <div className="relative w-11 h-11 rounded-full overflow-hidden ring-1 ring-white/10">
-                <Image src="/images/ankit-profile.jpg" alt="Ankit Singh" fill className="object-cover object-top" />
+                <Image src="/images/ankit-profile.webp" alt="Ankit Singh" fill className="object-cover object-top" />
               </div>
             </div>
             <div>
@@ -200,10 +200,11 @@ export default function Hero() {
           {/* Image with mouse parallax */}
           <motion.div style={{ x: imgX, y: imgY }} className="absolute inset-0 scale-[1.08]">
             <Image
-              src="/images/ankit-profile.jpg"
-              alt="Ankit Singh"
+              src="/images/ankit-profile.webp"
+              alt="Ankit Singh — Full Stack & AI Engineer"
               fill
               priority
+              fetchPriority="high"
               className="object-cover object-top"
               sizes="(max-width: 1024px) 100vw, 46vw"
             />

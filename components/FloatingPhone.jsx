@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function FloatingPhone() {
   return (
-    <div className="fixed bottom-6 left-6 lg:bottom-10 lg:left-10 z-[1000] flex flex-col gap-4">
+    <div className="hidden lg:flex fixed bottom-10 left-10 z-[1000] flex-col gap-4">
       {/* Email Button */}
       <motion.a
         href="mailto:developerankit2127@gmail.com"
@@ -41,7 +41,7 @@ export default function FloatingPhone() {
         transition={{ duration: 0.5, delay: 0.5, type: 'spring', bounce: 0.5 }}
       >
         <svg 
-          className="w-7 h-7 animate-[bounce_2s_infinite_1s]" 
+          className="w-7 h-7"
           fill="currentColor" 
           viewBox="0 0 24 24"
         >
@@ -63,7 +63,7 @@ export default function FloatingPhone() {
         <span className="absolute -inset-2 rounded-full border border-violet-600/30 scale-100 opacity-0 group-hover:scale-150 group-hover:opacity-100 transition-all duration-700 ease-out -z-10" />
 
         <svg 
-          className="w-6 h-6 animate-[bounce_2s_infinite]" 
+          className="w-6 h-6"
           fill="none" 
           stroke="currentColor" 
           viewBox="0 0 24 24"

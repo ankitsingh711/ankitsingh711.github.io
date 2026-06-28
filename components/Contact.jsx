@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { staggerContainer, fadeIn } from '@/utils/motion';
 
@@ -45,9 +46,23 @@ const socials = [
 ];
 
 export default function Contact() {
+  const [calendlyLoaded, setCalendlyLoaded] = useState(false);
+  const sectionRef = useRef(null);
+
+  // Only load Calendly iframe when Contact section enters the viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setCalendlyLoaded(true); },
+      { rootMargin: '200px' }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="contact"
+      ref={sectionRef}
       className="section-padding relative overflow-hidden section-divider"
     >
       {/* Backgrounds */}
@@ -64,7 +79,7 @@ export default function Contact() {
         variants={staggerContainer(0.15, 0)}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false, amount: 0.08 }}
+        viewport={{ once: true, amount: 0.08 }}
         className="section-container relative z-10"
       >
         {/* Section marker */}
@@ -148,15 +163,23 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Calendly iframe */}
+              {/* Calendly iframe — lazy loaded on scroll */}
               <div style={{ overflow: 'hidden', height: 'clamp(500px, 80vh, 700px)' }}>
-                <iframe
-                  src={`${CALENDLY_URL}?embed_type=Inline&hide_event_type_details=0&hide_gdpr_banner=1`}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 'none', display: 'block', overflow: 'hidden' }}
-                  title="Book a meeting with Ankit"
-                />
+                {calendlyLoaded ? (
+                  <iframe
+                    src={`${CALENDLY_URL}?embed_type=Inline&hide_event_type_details=0&hide_gdpr_banner=1`}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 'none', display: 'block', overflow: 'hidden' }}
+                    title="Book a meeting with Ankit Singh"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center gap-4 bg-surface-container-high/30">
+                    <div className="w-10 h-10 rounded-full border-2 border-primary/30 border-t-primary animate-spin" />
+                    <p className="text-on-surface-variant text-sm font-inter">Loading calendar…</p>
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>

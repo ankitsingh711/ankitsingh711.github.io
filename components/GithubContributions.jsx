@@ -28,7 +28,7 @@ export default function GithubContributions() {
         variants={staggerContainer(0.1, 0)}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false, amount: 0.1 }}
+        viewport={{ once: true, amount: 0.1 }}
         className="section-container relative z-10"
       >
         {/* Section marker */}
