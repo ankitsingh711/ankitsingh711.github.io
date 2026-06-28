@@ -40,9 +40,9 @@ export default function Hero() {
 
           {/* Section marker */}
           <motion.div
-            initial={{ opacity: 0, x: -16 }}
+            initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
             className="flex items-center gap-4 mb-10"
           >
             <span className="font-mono text-primary/50 text-xs font-bold tracking-[0.22em] select-none">01 / PORTFOLIO</span>
@@ -51,9 +51,9 @@ export default function Hero() {
 
           {/* Role chips */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.3, delay: 0.03, ease: 'easeOut' }}
             className="flex flex-wrap gap-2 mb-10"
           >
             {[
@@ -68,7 +68,7 @@ export default function Hero() {
             ))}
           </motion.div>
 
-          {/* Headline — word-by-word clip reveal */}
+          {/* Headline — clip reveal */}
           {[
             { text: 'From Idea', style: 'text-on-background' },
             { text: 'to Production,', stroke: true },
@@ -78,7 +78,7 @@ export default function Hero() {
               <motion.div
                 initial={{ y: '105%' }}
                 animate={{ y: 0 }}
-                transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1], delay: 0.14 + i * 0.1 }}
+                transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.06 + i * 0.06 }}
               >
                 <h1
                   className={`font-manrope font-black leading-[0.92] select-none ${stroke ? 'text-stroke-primary' : style}`}
@@ -92,9 +92,9 @@ export default function Hero() {
 
           {/* Positioning sub-statement */}
           <motion.p
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.48, duration: 0.6 }}
+            transition={{ delay: 0.2, duration: 0.3 }}
             className="text-on-surface-variant/70 font-inter text-sm tracking-wide mb-6"
           >
             Helping B2B SaaS teams ship <span className="text-primary font-semibold">AI-powered features</span> — fast, clean, and built to scale.
@@ -104,15 +104,15 @@ export default function Hero() {
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ duration: 0.9, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.5, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
             className="origin-left gradient-line mb-9"
           />
 
           {/* Name pill + location */}
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.65, duration: 0.6 }}
+            transition={{ delay: 0.27, duration: 0.3 }}
             className="flex items-center gap-4 mb-7"
           >
             <div className="relative shrink-0">
@@ -134,7 +134,7 @@ export default function Hero() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.75, duration: 0.7 }}
+            transition={{ delay: 0.3, duration: 0.35 }}
             className="text-on-surface-variant font-inter text-base md:text-lg leading-relaxed max-w-[440px] mb-10"
           >
             3+ years crafting production web platforms and AI-powered agents. I turn complex engineering problems into elegant, scalable solutions.
@@ -142,9 +142,9 @@ export default function Hero() {
 
           {/* CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.85, duration: 0.6 }}
+            transition={{ delay: 0.33, duration: 0.3 }}
             className="flex flex-wrap gap-3 mb-14"
           >
             <a
@@ -168,7 +168,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
+            transition={{ delay: 0.38 }}
             className="flex items-stretch gap-7"
           >
             {[
@@ -224,9 +224,9 @@ export default function Hero() {
 
           {/* Card 1: Available */}
           <motion.div
-            initial={{ opacity: 0, x: 30, y: -10 }}
+            initial={{ opacity: 0, x: 20, y: -8 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ delay: 1.05, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: 0.4, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="hidden sm:block absolute top-[15%] right-5 z-20"
           >
             <div className="glass border border-white/10 rounded-2xl px-5 py-3.5 flex items-center gap-3 backdrop-blur-md">
@@ -243,9 +243,9 @@ export default function Hero() {
 
           {/* Card 2: Latest project */}
           <motion.div
-            initial={{ opacity: 0, x: 30, y: -10 }}
+            initial={{ opacity: 0, x: 20, y: -8 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: 0.46, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="hidden sm:block absolute top-[38%] right-5 z-20"
           >
             <div className="glass border border-white/10 rounded-2xl px-5 py-3.5 backdrop-blur-md">
@@ -262,9 +262,9 @@ export default function Hero() {
 
           {/* Card 3: YouTube */}
           <motion.div
-            initial={{ opacity: 0, x: 30, y: -10 }}
+            initial={{ opacity: 0, x: 20, y: -8 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ delay: 1.35, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: 0.52, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="hidden sm:block absolute bottom-[14%] right-5 z-20"
           >
             <a
@@ -293,7 +293,7 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.1, duration: 0.8 }}
+        transition={{ delay: 0.35, duration: 0.4 }}
         className="relative z-20 w-full overflow-hidden shrink-0"
         style={{ borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)', background: 'rgba(8,16,36,0.65)', backdropFilter: 'blur(10px)' }}
       >
@@ -311,7 +311,7 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.6 }}
+        transition={{ delay: 0.6 }}
         className="hidden sm:flex absolute bottom-16 left-8 lg:left-16 xl:left-24 z-20 items-center gap-3 pointer-events-none"
       >
         <motion.div

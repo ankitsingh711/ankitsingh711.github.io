@@ -50,9 +50,9 @@ export default function Navbar() {
   return (
     <div className="fixed top-4 md:top-6 inset-x-0 z-[100] flex flex-col items-center px-4 md:px-6 pointer-events-none">
       <motion.nav
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.2, ease: 'easeOut' }}
         className={`pointer-events-auto relative flex flex-col w-full max-w-5xl transition-all duration-500 overflow-hidden rounded-[2rem] ${
           scrolled || isOpen
             ? 'glass shadow-2xl shadow-primary/5 dark:shadow-black/40'
