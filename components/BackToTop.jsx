@@ -27,10 +27,9 @@ export default function BackToTop() {
           transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
           onClick={handleClick}
           aria-label="Back to top"
-          className="fixed z-50 w-10 h-10 rounded-full flex items-center justify-center bg-primary/15 border border-primary/25 text-primary hover:bg-primary/25 transition-colors duration-200"
-          style={{ bottom: '96px', right: '24px' }}
+          className="fixed z-50 w-14 h-14 rounded-full flex items-center justify-center bg-primary/15 border border-primary/25 text-primary hover:bg-primary/25 transition-colors duration-200 bottom-[92px] right-6 lg:bottom-[108px] lg:right-10"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
           </svg>
         </motion.button>
