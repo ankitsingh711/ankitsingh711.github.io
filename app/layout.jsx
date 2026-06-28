@@ -83,6 +83,9 @@ export const metadata = {
   alternates: {
     canonical: 'https://ankitsingh711.github.io',
   },
+  verification: {
+    google: '846d3ee06a003fce',
+  },
 };
 
 export default function RootLayout({ children }) {
