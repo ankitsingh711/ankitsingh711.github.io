@@ -1,7 +1,7 @@
 export default function sitemap() {
   return [
     {
-      url: 'https://ankitsingh711.github.io',
+      url: 'https://ankoder.vercel.app',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 1,

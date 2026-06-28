@@ -42,13 +42,13 @@ export const metadata = {
     'Lucknow',
     'India',
   ],
-  authors: [{ name: 'Ankit Singh', url: 'https://ankitsingh711.github.io' }],
+  authors: [{ name: 'Ankit Singh', url: 'https://ankoder.vercel.app' }],
   creator: 'Ankit Singh',
-  metadataBase: new URL('https://ankitsingh711.github.io'),
+  metadataBase: new URL('https://ankoder.vercel.app'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://ankitsingh711.github.io',
+    url: 'https://ankoder.vercel.app',
     title: 'Ankit Singh — Full Stack & AI Engineer',
     description:
       'Building AI-powered products from idea to production. 3+ years, 10+ projects, 8+ AI apps shipped.',
@@ -80,7 +80,7 @@ export const metadata = {
     },
   },
   alternates: {
-    canonical: 'https://ankitsingh711.github.io',
+    canonical: 'https://ankoder.vercel.app',
   },
   verification: {
     google: '846d3ee06a003fce',
@@ -98,7 +98,7 @@ export default function RootLayout({ children }) {
               '@context': 'https://schema.org',
               '@type': 'Person',
               name: 'Ankit Singh',
-              url: 'https://ankitsingh711.github.io',
+              url: 'https://ankoder.vercel.app',
               jobTitle: 'Full Stack & AI Engineer',
               worksFor: { '@type': 'Organization', name: 'Tuna Software Solution Pvt. Ltd.' },
               address: { '@type': 'PostalAddress', addressLocality: 'Lucknow', addressCountry: 'IN' },
