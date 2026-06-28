@@ -59,7 +59,7 @@ export default function Navbar() {
             : 'bg-transparent shadow-none'
         }`}
       >
-        <div className={`relative flex items-center justify-between w-full transition-all duration-500 ${scrolled || isOpen ? 'px-6 py-3.5' : 'px-4 py-5'}`}>
+        <div className={`relative flex items-center justify-between w-full min-h-[60px] transition-all duration-500 ${scrolled || isOpen ? 'px-6 py-3.5' : 'px-4 py-5'}`}>
           {/* Logo */}
           <a href="#" className="hover:opacity-80 transition-opacity group flex-shrink-0 z-10">
             <Logo className="scale-[0.85] origin-left" />

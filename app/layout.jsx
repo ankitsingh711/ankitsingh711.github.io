@@ -3,7 +3,6 @@ import './globals.css';
 import ThemeProvider from '@/components/ThemeProvider';
 import CustomCursor from '@/components/CustomCursor';
 import Chatbot from '@/components/Chatbot';
-import FeaturePopup from '@/components/FeaturePopup';
 import FloatingSocials from '@/components/FloatingSocials';
 import FloatingPhone from '@/components/FloatingPhone';
 
@@ -115,8 +114,7 @@ export default function RootLayout({ children }) {
         />
         <ThemeProvider>
           <CustomCursor />
-          <FeaturePopup />
-          <FloatingSocials />
+<FloatingSocials />
           <FloatingPhone />
           <Chatbot />
           {children}

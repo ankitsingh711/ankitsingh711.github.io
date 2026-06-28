@@ -108,20 +108,18 @@ export default function About() {
 
             {/* Bio paragraphs */}
             <motion.div variants={fadeIn('right', 'tween', 0.35, 0.6)} className="space-y-5">
-              <p className="text-on-surface-variant text-lg leading-relaxed font-inter">
-                With over{' '}
-                <span className="text-primary font-semibold">3+ years</span> of
-                hands-on experience in the MERN stack and Cloud/DevOps, I bridge
-                the gap between complex backend architectures and intuitive
-                frontend experiences. My approach is rooted in clean code,
-                scalability, and user-centric design.
+              <p className="text-on-surface-variant font-inter text-base leading-relaxed mb-5">
+                I&apos;m a Full Stack &amp; AI Engineer who genuinely enjoys the hard parts — the architecture decisions at 2am, the RAG pipeline that wouldn&apos;t retrieve, the microservice that needed one more retry strategy. I&apos;ve spent 3+ years turning ambiguous product ideas into systems that actually scale.
               </p>
-              <p className="text-on-surface-variant text-lg leading-relaxed font-inter">
-                Currently based in{' '}
-                <span className="text-on-background font-medium">Lucknow, India</span>,
-                I spend my time optimizing deployment pipelines and crafting
-                robust API structures for global enterprise systems.
+              <p className="text-on-surface-variant font-inter text-base leading-relaxed">
+                My edge is the intersection of deep backend engineering and applied AI. Most teams have one or the other. I speak both languages — which means I can own an LLM feature end-to-end, from prompt design and vector store tuning to the Node.js API and React UI that ships it to users.
               </p>
+              <div className="mt-5 inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl border border-red-500/20 bg-red-500/5">
+                <svg className="w-4 h-4 text-red-500 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.498 6.186a2.96 2.96 0 00-2.083-2.091C19.58 3.6 12 3.6 12 3.6s-7.58 0-9.415.495A2.96 2.96 0 00.502 6.186C0 8.03 0 12 0 12s0 3.97.502 5.814a2.96 2.96 0 002.083 2.091c1.835.495 9.415.495 9.415.495s7.58 0 9.415-.495a2.96 2.96 0 002.083-2.091c.502-1.844.502-5.814.502-5.814s0-3.97-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+                <span className="text-on-surface-variant text-xs font-inter">I also teach Full Stack &amp; AI engineering on <a href="https://youtube.com/@ankkoder" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:text-red-300 font-semibold transition-colors">@ankkoder</a> — making complex concepts accessible for everyone learning to build.</span>
+              </div>
             </motion.div>
 
             {/* Code terminal */}
@@ -180,6 +178,27 @@ export default function About() {
                   <span className="text-tertiary">{'}'}</span>;
                 </code>
               </pre>
+            </motion.div>
+
+            {/* Education card */}
+            <motion.div variants={fadeIn('up', 'tween', 0.55, 0.6)} className="sui-card p-5 mt-5">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-1.5 h-1.5 rounded-full bg-tertiary" />
+                <span className="font-mono text-[10px] tracking-[0.18em] text-on-surface-variant/50 uppercase">Education</span>
+              </div>
+              <div className="space-y-4">
+                <div>
+                  <div className="text-on-background font-manrope font-bold text-sm">B.Tech — Computer Science</div>
+                  <div className="text-on-surface-variant text-xs font-inter mt-0.5">Dr. A.P.J. Abdul Kalam Technical University</div>
+                  <div className="text-on-surface-variant/50 text-[11px] font-inter mt-0.5">2019 — 2023</div>
+                </div>
+                <div className="h-px bg-white/[0.06]" />
+                <div>
+                  <div className="text-on-background font-manrope font-bold text-sm">Higher Secondary — Science (PCM)</div>
+                  <div className="text-on-surface-variant text-xs font-inter mt-0.5">Kendriya Vidyalaya</div>
+                  <div className="text-on-surface-variant/50 text-[11px] font-inter mt-0.5">2017 — 2019</div>
+                </div>
+              </div>
             </motion.div>
           </div>
 

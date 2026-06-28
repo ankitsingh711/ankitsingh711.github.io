@@ -36,7 +36,7 @@ export default function Hero() {
       <div className="relative z-10 flex flex-col lg:flex-row flex-1 min-h-screen">
 
         {/* ── LEFT: Text ── */}
-        <div className="flex flex-col justify-center lg:w-[54%] px-4 sm:px-10 lg:px-16 xl:px-24 pt-24 pb-10 lg:pt-0 lg:pb-0 order-2 lg:order-1">
+        <div className="flex flex-col justify-center lg:w-[54%] px-4 sm:px-10 lg:px-16 xl:px-24 pt-28 pb-10 lg:pt-28 lg:pb-12 order-2 lg:order-1">
 
           {/* Section marker */}
           <motion.div
@@ -89,6 +89,16 @@ export default function Hero() {
               </motion.div>
             </div>
           ))}
+
+          {/* Positioning sub-statement */}
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.48, duration: 0.6 }}
+            className="text-on-surface-variant/70 font-inter text-sm tracking-wide mb-6"
+          >
+            Helping B2B SaaS teams ship <span className="text-primary font-semibold">AI-powered features</span> — fast, clean, and built to scale.
+          </motion.p>
 
           {/* Gradient divider line */}
           <motion.div

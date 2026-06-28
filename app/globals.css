@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-padding-top: 96px;
+}
+
 /* ═══════════════════════════════════════════════
    STITCH DESIGN SYSTEM: "The Full-Stack Luminary"
    Dark + Light Mode with CSS Custom Properties

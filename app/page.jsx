@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import ClientLogos from '@/components/ClientLogos';
 import About from '@/components/About';
 import Skills from '@/components/Skills';
 import Experience from '@/components/Experience';
@@ -9,6 +10,7 @@ import YouTubeVideos from '@/components/YouTubeVideos';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import Testimonials from '@/components/Testimonials';
+import BackToTop from '@/components/BackToTop';
 
 export default function Home() {
   return (
@@ -16,6 +18,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <ClientLogos />
         <About />
         <Skills />
         <Experience />
@@ -26,6 +29,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <BackToTop />
     </>
   );
 }

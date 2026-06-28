@@ -88,7 +88,7 @@ export default function Contact() {
           className="flex items-center gap-4 mb-10"
         >
           <span className="font-mono text-primary/50 text-xs font-bold tracking-[0.22em] select-none">
-            06 / CONTACT
+            09 / CONTACT
           </span>
           <div
             className="h-px flex-1 max-w-[72px]"
@@ -189,6 +189,8 @@ export default function Contact() {
             variants={fadeIn('left', 'tween', 0.2, 0.55)}
             className="lg:col-span-2 space-y-4"
           >
+            <p className="text-on-surface-variant/50 font-inter text-xs mb-4 uppercase tracking-wider">Prefer a quick message?</p>
+
             {/* Email */}
             <div className="sui-card p-5" style={{ borderLeft: '2px solid rgba(159,167,255,0.35)' }}>
               <div className="flex items-start gap-4">
@@ -202,22 +204,6 @@ export default function Contact() {
                   <a href="mailto:developerankit2127@gmail.com" className="text-on-background font-inter font-medium hover:text-primary transition-colors text-sm break-all">
                     developerankit2127@gmail.com
                   </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Location */}
-            <div className="sui-card p-5" style={{ borderLeft: '2px solid rgba(98,250,227,0.35)' }}>
-              <div className="flex items-start gap-4">
-                <div className="p-2.5 rounded-xl bg-secondary/10 text-secondary shrink-0">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-on-surface-variant text-xs font-inter mb-1 uppercase tracking-wider">Location</p>
-                  <p className="text-on-background font-inter font-medium text-sm">Lucknow, India</p>
                 </div>
               </div>
             </div>
@@ -258,18 +244,21 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Open in full screen */}
-            <a
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 text-xs text-on-surface-variant font-inter hover:text-primary transition-colors py-2"
-            >
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-              Open Calendly in full screen
-            </a>
+            {/* Location */}
+            <div className="sui-card p-5" style={{ borderLeft: '2px solid rgba(98,250,227,0.35)' }}>
+              <div className="flex items-start gap-4">
+                <div className="p-2.5 rounded-xl bg-secondary/10 text-secondary shrink-0">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-on-surface-variant text-xs font-inter mb-1 uppercase tracking-wider">Location</p>
+                  <p className="text-on-background font-inter font-medium text-sm">Lucknow, India</p>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </motion.div>

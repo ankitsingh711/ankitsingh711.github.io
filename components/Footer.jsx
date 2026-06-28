@@ -11,6 +11,29 @@ export default function Footer() {
       {/* Gradient line at top */}
       <div className="gradient-line" />
 
+      {/* Pre-footer CTA */}
+      <div className="border-b border-white/[0.06]">
+        <div className="section-container py-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div>
+            <h2 className="font-manrope font-black text-on-background text-2xl md:text-3xl mb-1" style={{ letterSpacing: '-0.025em' }}>
+              Ready to build something great?
+            </h2>
+            <p className="text-on-surface-variant font-inter text-sm">
+              I&apos;m available for freelance projects, contracts, and full-time roles.
+            </p>
+          </div>
+          <a
+            href="#contact"
+            className="btn-shimmer shrink-0 gradient-primary text-[color:var(--gradient-btn-text)] px-8 py-3.5 rounded-xl font-bold font-inter text-sm flex items-center gap-2 hover:scale-[1.03] transition-all duration-300 whitespace-nowrap"
+          >
+            Book a Call
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Mono site marker */}
