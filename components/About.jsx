@@ -252,6 +252,83 @@ export default function About() {
                 </p>
               </div>
             </motion.div>
+
+            {/* LinkedIn profile card */}
+            <motion.a
+              href="https://www.linkedin.com/in/ankit-singh2127"
+              target="_blank"
+              rel="noopener noreferrer"
+              variants={fadeIn('left', 'tween', 0.6, 0.55)}
+              className="col-span-2 lg:col-span-1 block group"
+            >
+              <div
+                className="relative rounded-2xl overflow-hidden border border-white/[0.07] hover:border-[#0A66C2]/40 transition-all duration-300"
+                style={{ background: 'rgba(255,255,255,0.02)' }}
+              >
+                {/* Top banner */}
+                <div
+                  className="h-14 w-full"
+                  style={{ background: 'linear-gradient(135deg, #0A66C2 0%, #0077B5 60%, #00A0DC 100%)' }}
+                />
+
+                {/* Avatar overlapping banner */}
+                <div className="px-4 pb-4">
+                  <div className="relative -mt-7 mb-3 flex items-end justify-between">
+                    <div className="w-14 h-14 rounded-full border-2 border-[#0A1929] overflow-hidden shrink-0">
+                      <img
+                        src="/images/ankit-profile.webp"
+                        alt="Ankit Singh"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    {/* LinkedIn logo */}
+                    <div className="flex items-center gap-1.5 mt-2">
+                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="#0A66C2">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                      </svg>
+                      <span className="text-[10px] font-inter font-semibold text-[#0A66C2]">LinkedIn</span>
+                    </div>
+                  </div>
+
+                  {/* Name & title */}
+                  <div className="mb-3">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-on-background font-manrope font-bold text-sm">Ankit Singh</span>
+                    </div>
+                    <p className="text-on-surface-variant text-[11px] font-inter leading-snug mt-0.5">
+                      Full Stack AI Developer @ ChumleyAI · Gen AI + Agentic AI
+                    </p>
+                  </div>
+
+                  {/* Stats row */}
+                  <div className="flex items-center gap-3 mb-3 pb-3 border-b border-white/[0.06]">
+                    <div className="text-center">
+                      <div className="text-on-background font-manrope font-black text-base leading-none" style={{ background: 'linear-gradient(135deg, #0A66C2, #00A0DC)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>11K+</div>
+                      <div className="text-on-surface-variant text-[10px] font-inter mt-0.5">Followers</div>
+                    </div>
+                    <div className="w-px h-6 bg-white/[0.08]" />
+                    <div className="text-center">
+                      <div className="text-on-background font-manrope font-black text-base leading-none" style={{ background: 'linear-gradient(135deg, #0A66C2, #00A0DC)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>500+</div>
+                      <div className="text-on-surface-variant text-[10px] font-inter mt-0.5">Connections</div>
+                    </div>
+                  </div>
+
+                  {/* Connect CTA */}
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] text-on-surface-variant font-inter">Let&apos;s connect →</span>
+                    <span
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-inter font-semibold text-white group-hover:scale-105 transition-transform duration-200"
+                      style={{ background: '#0A66C2' }}
+                    >
+                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" transform="rotate(180 12 12)" />
+                      </svg>
+                      Connect
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </motion.a>
           </div>
         </div>
       </motion.div>
